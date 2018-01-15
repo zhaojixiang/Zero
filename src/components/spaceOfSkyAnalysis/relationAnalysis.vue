@@ -35,32 +35,28 @@
             <span class="headerTitle timeTitle">
                 时间范围
             </span >
-            <el-row :gutter="0">
-                <el-col :span="12">
-                    <el-form-item label-width='52px' label="开始日期 :">
-                        <el-date-picker
-                            v-model="form_data.start_date"
-                            :clearable='false'
-                            type="date"
-                            size="mini"
-                            placeholder="选择日期"
-                            format="yyyy年MM月dd日">
-                        </el-date-picker>
-                    </el-form-item>
-                </el-col>
-                <el-col :span="12" style="paddingLeft:0px;">
-                    <el-form-item label-width='52px' label="结束日期 :">
-                        <el-date-picker
-                            v-model="form_data.end_date"
-                            :clearable='false'
-                            type="date"
-                            size="mini"
-                            placeholder="选择日期"
-                            format="yyyy年MM月dd日">
-                        </el-date-picker>
-                    </el-form-item>
-                </el-col>
-            </el-row>
+            <section class="relationTime">
+                <el-form-item label="开始日期 :" style="margin:0;padding:0;">
+                    <el-date-picker
+                        v-model="form_data.start_date"
+                        :clearable='false'
+                        type="date"
+                        size="mini"
+                        placeholder="选择日期"
+                        format="yyyy年MM月dd日">
+                    </el-date-picker>
+                </el-form-item>
+                <el-form-item label="结束日期 :" style="margin:0;padding:0;">
+                    <el-date-picker
+                        v-model="form_data.end_date"
+                        :clearable='false'
+                        type="date"
+                        size="mini"
+                        placeholder="选择日期"
+                        format="yyyy年MM月dd日">
+                    </el-date-picker>
+                </el-form-item>
+            </section>
         </el-form>
     </el-main>
     <el-button @click="do_analysis" type="primary" size='medium'>执行分析</el-button>
@@ -170,7 +166,7 @@ export default {
     font-size: 10px;
 }
 .RAcontainer .el-form--inline .el-form-item__content{
-    width:160px;
+    width:159px;
 }
 .el-form--inline .el-form-item{
   margin-bottom: 10px;
@@ -180,5 +176,10 @@ export default {
 }
 .RAcontainer .el-form-item__label{
   padding: 0px;
+}
+.RAcontainer .relationTime{
+  display: flex;
+  justify-content: space-between;
+
 }
 </style>

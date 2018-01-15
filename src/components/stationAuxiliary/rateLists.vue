@@ -1,21 +1,21 @@
 <!-- 已使用频率 未使用频率 -->
 <template>
   <section>
-      <el-container class="container_list">
-        <el-header height='30' class='headerTitle'>
+      <el-container class="auxiliary_list">
+        <div class='headerTitle'>
             <span>
                 <img :src="icon_right_arrow" alt="right icon">
                 {{header_title}}
             </span>
             <span @click="changeShow" class="right_click_title">{{title_click?'未使用频率':'已使用频率'}}</span>
-        </el-header>
+        </div>
         <div class='main-title' v-show="title_click">
             <span class='title_item'>频率(MHz)</span>
             <span class='title_item'>带宽(KHz)</span>
             <span class='title_item'>信号覆盖率</span>
             <span class='title_item'>频率性质</span>
         </div>
-        <el-main>
+        <el-main style="padding: 0 7px;">
             <list :data='data'></list>
         </el-main>
         <el-footer height='40px' class="footer">
@@ -55,38 +55,42 @@ export default {
 }
 </script>
 <style>
-.container_list {
+.auxiliary_list {
   height: 380px;
   overflow: hidden;
   border: 1px solid #4fdaff;
-  margin: 0.5em 0 0.5em 0.5em;
-  padding: 0.5em 0 0 0;
+  background: rgba(0, 0, 0, 0.2);
+  margin-top: 10px;
 }
-.container_list .headerTitle {
+.auxiliary_list .headerTitle {
   color: #4fdaff;
   display: flex;
   justify-content: space-between;
+  padding: 0 10px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 14px;
 }
-.container_list .headerTitle .right_click_title{
+.auxiliary_list .headerTitle .right_click_title{
     color:yellow;
     text-decoration: underline;
     cursor: pointer;
 }
-.container_list .main-title {
-  width: 100%;
+.auxiliary_list .main-title {
+  width: 94%;
+  margin: 0 auto;
   display: flex;
   color: #b7bdfd;
-  /* position: relative; */
   padding: 0.5em 0;
 }
-.container_list .footer{
+.auxiliary_list .footer{
     text-align: center;
 }
-.title_item {
+.auxiliary_list .title_item {
   width: 25%;
   text-align: center;
 }
-.el-pagination button.disabled,.el-dialog, .el-pager li,.el-pagination .btn-next, .el-pagination .btn-prev{
+.auxiliary_list .el-pagination button.disabled,.auxiliary_list .el-dialog, .el-pager li,.auxiliary_list .el-pagination .btn-next,.auxiliary_list .el-pagination .btn-prev{
   background: none;
   color: #fff;
 }

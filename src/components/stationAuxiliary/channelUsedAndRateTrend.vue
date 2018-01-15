@@ -1,16 +1,16 @@
 <!--信道占用度和功率变化趋势-->
-<template>     
-    <el-container class='zoneContainer11' :style="{'height':'400px'}">
-        <el-header height='30' class='headerTitle'>
+<template>
+    <div class='zoneContainer11'>
+        <div class='headerTitle'>
             <span>
             <img :src="icon_right_arrow" alt="right icon">
             成都广播电台在10月1日-10月30日的38.5MHz信道占用度和功率变化趋势
             </span>
-        </el-header>
-        <el-main>
-            <spectra :option="spectraBarOption" :setting="{width:'98%',height:'300px'}"/>
-        </el-main>
-    </el-container>
+        </div>
+        <div>
+            <spectra :option="spectraBarOption" :setting="{width:'100%',height:'250px'}"/>
+        </div>
+    </div>
 </template>
 <script>
 import * as Global_ from 'assets/js/global'
@@ -29,11 +29,19 @@ export default {
 }
 </script>
 <style>
+.zoneContainer11 .headerTitle{
+  height: 40px;
+  line-height: 40px;
+  color: #56e5ff;
+  font-size: 14px;
+  padding: 0 10px;
+}
 .zoneContainer11 {
-  height: 15em;
+  height: 300px;
   overflow: hidden;
   border: 1px solid #4fdaff;
-  margin: 0.5em 0 .5em .5em;
-  padding: 0.5em 0 0 0;
+  background: rgba(0, 0, 0, 0.2);
+  /* margin: 0.5em 0 .5em .5em; */
+  margin: 10px;
 }
 </style>

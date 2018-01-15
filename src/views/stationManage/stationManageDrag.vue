@@ -1,11 +1,11 @@
 <template>
-  <div id="filtrate">
+  <div id="stationMange">
     <nav1 :showTitle="true" @occupy="occupy1"/>
     <div class="container">
       <!-- 地图 -->
       <map1 ref="map" @showSpectra0="showSpectra1"/>
       <!-- 切换 -->
-      <change @energy="energy1" @frequencyMap="frequencyMap1" class="tabbar" :select="select"/>
+      <change @energyCircle="energyCircle" @frequencyMap="frequencyMap1" @energyRetangle="energyRetangle" class="tabbar" :select="select"/>
       <!-- 筛选表单 -->
       <VueDraggableResizable :resizable="true" :x="20" :y="50" :z="999" :parent="true">
         <filtrate class="flitrate"/>
@@ -51,7 +51,7 @@
   </div>
 </template>
 <style scoped>
-  .container {
+  #stationMange .container {
     width: 100%;
     height: 100%;
     margin: auto;
@@ -59,25 +59,25 @@
     position: relative;
   }
 
-  #filtrate {
+  #stationMange {
     color: #ffffff;
     height: 1200px;
   }
 
-  #filtrate .left {
+  #stationMange .left {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
 
-  .flitrate {
+  #stationMange .flitrate {
     /* position: absolute; */
     top: 70px;
     left: 50px;
     z-index: 2000;
   }
 
-  .filBox {
+  #stationMange .filBox {
     width: 90%;
     margin: 20px auto 0px;
     padding-bottom: 20px;
@@ -85,7 +85,7 @@
     justify-content: space-between;
   }
 
-  .pie {
+  #stationMange .pie {
     border: solid 1px #33ccff;
     background: rgba(0, 0, 0, 0.88);
     /* position: absolute; */
@@ -95,13 +95,13 @@
     z-index: 999;
   }
 
-  .pie img {
+  #stationMange .pie img {
     position: absolute;
     top: 17px;
     left: 13px;
   }
 
-  .table {
+  #stationMange .table {
     padding: 0 10px;
     position: absolute;
     top: 490px;
@@ -111,7 +111,7 @@
     background: rgba(0, 0, 0, 0.88);
   }
 
-  .tabbar {
+  #stationMange .tabbar {
     width: 40%;
     position: absolute;
     z-index: 1000;
@@ -119,7 +119,7 @@
     left: 20px;
   }
 
-  .occupyBar, .spectra {
+  #stationMange .occupyBar,#stationMange  .spectra {
     position: absolute;
     bottom: -847px;
     left: 22px;
@@ -127,7 +127,7 @@
     background-color: #5294d1;
   }
 
-  .occupyBar i, .spectra i {
+  #stationMange .occupyBar i,#stationMange .spectra i {
     position: absolute;
     right: 10px;
     top: 10px;
@@ -185,20 +185,22 @@
 
     },
     methods: {
-      energy1: function (param) {
-        if (param) {
-          this.$http.get('apiGetMap111').then(res => {
-            this.$refs.map.energyRetangle(res.data);
-          });
-        } else {
-          this.$refs.map.energyRetangle([], false);
-        }
+      energyCircle: function (param) {
+          this.$http.get('apiGetMapPie222').then(res => {
+            this.$refs.map.energyCircle(res.data,param)
+          })
       },
       frequencyMap1: function (param) {
-        console.log('11');
-        console.time('a');
+        // console.log('11');
+        // console.time('a');
         this.$refs.map.frequencyMap(grid, param);
-        console.timeEnd('a');
+        // console.timeEnd('a');
+      },
+      energyRetangle(param){
+        this.$http.get('apiGetMap111').then(res => {
+          console.log(res.data);
+          this.$refs.map.energyRetangle(res.data,param)
+        })
       },
       occupy1() {
         this.showOccupy = !this.showOccupy;

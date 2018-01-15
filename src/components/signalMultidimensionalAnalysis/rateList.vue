@@ -2,21 +2,21 @@
 <!--频率列表-->
 <template>
   <el-container class='rate_container'>
-    <el-header height='30' class='headerTitle'>
+    <div height='30' class='headerTitle'>
         <span>
         <img :src="icon_right_arrow" alt="right icon">
         频率列表
         </span>
-    </el-header>
+    </div>
     <div class='main-title'>
         <span class='title_item'>频率(MHz)</span>
         <span class='title_item'>带宽(KHz)</span>
         <span class='title_item'>信号覆盖率</span>
         <span class='title_item'>频率性质</span>
     </div>
-    <el-main class='cover_default'>
+    <div class='cover_default'>
         <list :data='data'></list>
-    </el-main>
+    </div>
     <el-footer height='40px' class="footer">
         <el-pagination
             layout="prev, pager, next"
@@ -46,30 +46,27 @@ export default {
 </script>
 <style>
 .rate_container {
-  overflow: hidden;
   border: 1px solid #4fdaff;
   background: rgba(0,0,0,0.2);
   height: 228px;
-  /* margin: 0.5em 0 0.5em 0.5em; */
-  /* padding: 0.5em 0 0 0; */
 }
 .rate_container .headerTitle {
   color: #4fdaff;
-  display: flex;
-  justify-content: space-between;
   font-size: 14px;
   height: 40px;
   line-height: 40px;
+  padding: 0 10px;
 }
 .rate_container .cover_default {
-  padding: 0 1em;
+  height: 120px;
+  overflow: auto;
+
 }
 .rate_container .main-title {
-  width: 100%;
+  width: 97%;
   display: flex;
   color: #fff;
-  /* position: relative; */
-  padding: 0.5em 0;
+  padding: 0.5em 10px;
 }
 .rate_container .title_item {
   width: 25%;

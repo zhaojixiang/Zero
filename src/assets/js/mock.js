@@ -750,6 +750,7 @@ Mock.mock(/api\/GetAllStationInfoList/, {
     'data|8': [{ 'station_name': '高新区天府站', 'operator': '移动', 'tech_sys': '4G', 'standard': 'GSM', 'launch_date': '@date', 'rate_range': '400-600MHz' }]
   }
 })
+// 网格占用度
 Mock.mock(/apiGetMap111/,{
   success:true,
   msg:'',
@@ -809,6 +810,7 @@ Mock.mock(/apiGetMap111/,{
     {Lng: 113.0958,Lat: 22.59028,Value: 8}
   ]
 });
+// 能量轨迹
 Mock.mock(/apiGetMapPie222/,{
   success:true,
   msg:'',
@@ -4608,5 +4610,5 @@ Mock.mock(/api\/GetOtherInfo/, {
 Mock.mock(/api\/GetFixedStationList/,{
   success:true,
   msg:'',
-  'data|8':[{'station_name':'高新区天府站','part_cover|1-100.0-2':90}]
+  'data|14':[{'station_name':'高新区天府站','part_cover|1-100.0-2':90}]
 })

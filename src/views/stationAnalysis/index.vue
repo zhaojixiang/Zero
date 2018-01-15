@@ -155,6 +155,7 @@ export default {
   /* position: absolute; */
   top: 10px;
   left: 20px;
+  height: 400px;
   width: 100%;
   z-index: 999;
   background: rgba(0,0,0,0.68);
@@ -167,10 +168,10 @@ export default {
     background: rgba(0,0,0,0.68);
  }
  .pieOccupy{
-     left:548px;
+     left:120%;
  }
 .pieOccupy2{
-    left: 1054px;
+    left: 230%;
 }
 .filtratesLeft{
   width: 98%;
@@ -182,7 +183,7 @@ export default {
     border: 1px solid #4fdaff;
     width: 100%;
     position: absolute;
-    top: 419px;
+    top: 210%;
     z-index: 999;
     background: rgba(0,0,0,0.68);
 }

@@ -21,7 +21,8 @@ import heatMap from 'highcharts/modules/heatmap';
 import loadHighchartsMore from 'highcharts/highcharts-more';
 import boost from 'highcharts/modules/boost';
 import Highcharts from 'highcharts';
-// import leafletChoropleth from 'leaflet-choropleth'
+//全局引入api接口
+import {request} from 'api/api'
 NoDataToDisplay(Highcharts)
 heatMap(Highcharts)
 loadHighchartsMore(Highcharts)
@@ -42,6 +43,7 @@ Vue.component('chart', ECharts)
 Vue.use(VueHighcharts, { Highcharts })
 Vue.prototype.$http = http;
 Vue.prototype.$const = globalConstant;
+Vue.prototype.$api = request;
 Vue.config.productionTip = false
 
 let initData = JSON.parse(document.getElementById('init').innerHTML);

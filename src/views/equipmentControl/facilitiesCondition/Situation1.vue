@@ -5,7 +5,7 @@
   <div class="left">
     <!--2017年全省监测设施数量统计饼图-->
     <div class="cake">
-      <pie :option="pieOption" :data="pieList" :setting="{width: '380px', height: '260px'}" class="all"/>
+      <pie :option="pieOption" :data="pieList" :setting="{width: '400px', height: '260px'}" class="all"/>
     </div>
     <!--最近十年全省监测设施数量统计 柱状图-->
     <div class="province">
@@ -264,7 +264,7 @@
 
 .cake {
   height: 280px;
-  width: 380px;
+  width: 400px;
   background-color: rgba(0, 0, 0, 0.2);
   border: solid 1px #00bbff;
 }

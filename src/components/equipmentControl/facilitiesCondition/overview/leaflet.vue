@@ -24,7 +24,7 @@
     color: #777;
   }
 
-  .legend {
+  .popup-legend {
     line-height: 8px;
     color: #555;
   }
@@ -65,6 +65,7 @@
         count: 0,
         flag: true,
         markersLayer: new L.LayerGroup(),
+        stationLayer:new L.LayerGroup(),
         energyRetangleLayer: new L.LayerGroup(),
         energyCircleLayer: new L.LayerGroup(),
         frequencyMapLayer: new L.LayerGroup(),
@@ -82,6 +83,7 @@
       alert1() {
         alert(111);
       },
+      //设备管理-显示台站位置marker
       initMarker: function (data, show = true) {
         //再次点击传入show=false则清除layer
         if (!show) {
@@ -99,7 +101,6 @@
         if (data === undefined) {
           data = [];
         }
-        console.log(data, 'marker');
         //每次点击切换城市时需要先清除上一个城市的markerLayer
         this.markersLayer.clearLayers();
         this.markersLayer.removeFrom(map);
@@ -143,6 +144,84 @@
         }
         this.markersLayer.addTo(map);
       },
+      //设备管理-移除台站marker
+      removeMarker:function(){
+        this.markersLayer.clearLayers();
+      },
+      //台站显示-聚类marker
+      stationMarker:function(data,clust=false,show=true) {
+        var stationIcon = null;
+        if(clust) {
+          stationIcon = L.icon({
+            iconUrl: '/static/img/marker1.png',
+            iconSize: [45, 60],
+            iconAnchor: [22.5, 60],
+            popupAnchor: [0, -60]
+          });
+        } else {
+          stationIcon = L.divIcon({
+            // iconUrl: '/static/img/marker-selected.png',
+            // iconSize: [45, 60],
+            iconAnchor: [22.5, 60],
+            popupAnchor: [0, -60],
+            html:'<img width="45" height="60" src="/static/img/marker-selected.png"/><span class="station-marker-label">20个台站</span>',
+            className:'stationIcon',
+          });
+        }
+        //     地图上的marker
+        if (!(data instanceof Array)) {
+          data = [];
+        }
+        //每次点击切换城市时需要先清除上一个城市的markerLayer
+        this.stationLayer.clearLayers();
+        this.stationLayer.removeFrom(map);
+        for (var i = 0; i < data.length; i++) {
+          let id = data[i].code;
+          let marker = L.marker([data[i].latitude, data[i].longitude], {icon: stationIcon});
+          console.log("marker");
+          this.stationLayer.addLayer(marker);
+          let router = this.$router;
+          let that = this;
+          marker.on('click', function (e) {
+            this._icon.src = this.flag ? '/static/img/marker1.png' : '/static/img/marker2.png';
+            this.flag = !this.flag;
+            let href = router.resolve({name: 'WorkAnalyze'}).href + '?id=' + id;
+            let temp = marker.getPopup();
+            if (temp === undefined) {
+              // that.$http.get('api/EquipSurvey/EquInfo', {
+              //   mfid: id,
+              // }).then(res => {
+                let data = {
+                  name:'test',
+                  manu:'test',
+                  model:'test',
+                  type:'test',
+                  chargeMen:'test',
+                  date:'test',
+                };
+                let a = "<div id='basic'><p class='title'>基本信息</p><div class='bottom'>" +
+                  "<li>站名 : " + data.name + "</li>" +
+                  "<li>厂家 : <span>" + data.manu + "</span></li>" +
+                  "<li>型号 : " + data.model + "</li>" +
+                  "<li>类型 : " + data.type + "</li>" +
+                  "<li>负责人 : " + data.chargeMen + "</li>" +
+                  "<li>建设时间 : " + data.date + "</li>" +
+                  "<span class='info'><a href='" + href + "'>详情</a></span>"+
+                  "</ul></div></div>";
+                let popup = L.popup({minWidth: 300, className: 'leaf-alert'})
+                  .setContent(a);
+                marker.bindPopup(popup).openPopup();
+              // });
+            } else {
+              // temp.setContent(a);
+              temp.openPopup();
+            }
+          });
+        }
+        this.stationLayer.addTo(map);
+      },
+      //能量轨迹-矩形
+      // 信道网格优化占用度
       energyRetangle: function (data, show = true) {
         //再次点击传入show=false则清除layer
         if (!show) {
@@ -150,32 +229,53 @@
           this.energyRetangleLayer.removeFrom(map);
           return
         }
-        //能量轨迹
+
         // console.log('=====',this.energyData);
         let energy = data;
-        colorScale.calcColorScale(100);
-        for (var i = 0; i < energy.length; i++) {
+        minPower = energy[0].Value;
+        maxPower = minPower;
+        for (var i = 0; i < data.length; i++) {
+          var value = Number(energy[i].Value);
+          // console.log(data[i].Value);
+          if (value > maxPower) {
+            maxPower = value;
+          }
+          if (value < minPower) {
+            minPower = value;
+          }
+        }
+        colorScale.calcColorScale(Math.ceil(maxPower - minPower));
+
+        console.log(energy.length);
+        let len = energy.length;
+
+        // console.log(coordtransform)
+        for(var i = 0; i<len; i++) {
           // if (isNaN(energy[i].Lng) || isNaN(energy[i].Lat)) {
           //   continue;
           // };
           var p = coordtransform.wgs84togcj02(energy[i].Lng, energy[i].Lat);
+          //
           var pCentre = new LatLon(p[1], p[0]);
-          // console.log(pCentre);
+          // // console.log(pCentre);
           var p1 = pCentre.rhumbDestinationPoint(125, 270);
           var p2 = pCentre.rhumbDestinationPoint(125, 180);
           var d = map.distance([pCentre.lat, pCentre.lon], [p1.lat, p1.lon]);
-          var c = colorScale.getColor(0, 100, energy[i].Value);
-          //var p3 = pCentre.rhumbDestinationPoint(100, 90);
-          //var p4 = pCentre.rhumbDestinationPoint(100, 0);
-          let energy = L.rectangle([[pCentre.lat * 2 - p2.lat, p1.lon], [p2.lat, pCentre.lon * 2 - p1.lon]], {
+          var c = colorScale.getColor(minPower, maxPower, energy[i].Value);
+          // //var p3 = pCentre.rhumbDestinationPoint(100, 90);
+          // //var p4 = pCentre.rhumbDestinationPoint(100, 0);
+          console.log(p2.lat,p1.lon)
+          let energy1 = L.rectangle([[pCentre.lat * 2 - p2.lat, p1.lon], [p2.lat, pCentre.lon * 2 - p1.lon]], {
             color: c,
             fillOpacity: 1
           });
-          this.energyRetangleLayer.addLayer(energy);
+          this.energyRetangleLayer.addLayer(energy1);
+          console.log('成功');
         }
         this.energyRetangleLayer.addTo(map);
+        that.legend(0,0);
+        that.legend(minPower,maxPower);
       },
-
       //频谱地图
       frequencyMap: function (data, show = true) {
         //再次点击传入show=false则清除layer
@@ -204,7 +304,6 @@
           },
           onEachFeature: function (feature, layer) {
             let b = document.getElementById('popupAlert')
-            // let b = '<popup/>'
             let popup = L.popup({minWidth: 200})
               .setContent(b)
             layer.bindPopup(popup)
@@ -214,16 +313,15 @@
         this.frequencyMapLayer.addTo(map);
       },
 
-      // 能量轨迹
+      // 能量轨迹-圆形
       energyCircle(data, show = true) {
         //再次点击传入show=false则清除layer
+        let that = this;
         if (!show) {
           this.energyCircleLayer.clearLayers();
           this.energyCircleLayer.removeFrom(map);
           return
         }
-        //圆圈
-        let that = this;
         // console.log(data);
         minPower = data[0].Value;
         maxPower = minPower;
@@ -272,8 +370,57 @@
           })
         }
         this.energyCircleLayer.addTo(map);
+        that.legend(minPower, maxPower, show);
+        // console.log(minPower,maxPower)
         // legend.remove();
-        // legend.addTo(map);
+        // that.legend.addTo(map);
+        // console.log(that.legend)
+        // console.log(this.legend)
+      },
+      //添加色柱
+      legend(minPower,maxPower,show = true){
+
+        // console.log(minPower,maxPower);
+        var legend = L.control({position: 'bottomright'});
+        // console.log(legend,'2222222222222222222222');
+        // if (!show) {
+        //   legend.onRemove
+        // }
+        legend.onAdd = function (map) {
+          var div = L.DomUtil.create('div', 'info legend'),
+            labels = [];
+          var grades = new Array();
+           // console.log(maxPower,minPower);
+          var len = Math.ceil(maxPower - minPower);
+          //.style.height = window.innerheight / len + "px";
+          // loop through our density intervals and generate a label with a colored square for each interval
+          if (len!==0){
+            for (var i = Math.ceil(maxPower - minPower); i >= 0; i--) {
+              if (i == len) {
+                div.innerHTML += Math.ceil(maxPower) + "<br>";
+              }
+              div.innerHTML +=
+                '<i style="background:' + colorScale.getColor(minPower, maxPower, minPower + i) + '"></i><br>';
+              if (i == 0) {
+                div.innerHTML += Math.ceil(minPower);
+              }
+            }
+          }
+          return div
+        }
+        // if(!show){
+        //   return
+        // }else{
+          legend.addTo(map)
+          // console.log(legend)
+          setTimeout(
+            "console.log(legend)"
+            // legend.remove()
+            ,5000
+
+          )
+        // }
+        // legend.remove();
       },
       show() {
         // alert(111);
@@ -316,31 +463,7 @@
       });
 
 
-      // //添加色柱
-      // var legend = L.control({position: 'bottomright'});
-      // legend.onAdd = function (map) {
-      //   var div = L.DomUtil.create('div', 'info legend'),
-      //     labels = [];
-      //   var grades = new Array();
-      //    // console.log(maxPower,minPower);
-      //   var len = Math.ceil(maxPower - minPower);
-      //   //.style.height = window.innerheight / len + "px";
-      //   // loop through our density intervals and generate a label with a colored square for each interval
-      //   if (len!==0){
-      //     for (var i = Math.ceil(maxPower - minPower); i >= 0; i--) {
-      //       if (i == len) {
-      //         div.innerHTML += Math.ceil(maxPower) + "<br>";
-      //       }
-      //       div.innerHTML +=
-      //         '<i style="background:' + colorScale.getColor(minPower, maxPower, minPower + i) + '"></i><br>';
-      //       if (i == 0) {
-      //         div.innerHTML += Math.ceil(minPower);
-      //       }
-      //     }
-      //   }
-      //   return div;
-      // };
-      // legend.addTo(map);
+
 
 
       //     // 绘制区域

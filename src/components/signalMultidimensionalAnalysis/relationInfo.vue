@@ -1,12 +1,12 @@
 <!--频率38.5MHz相关信息-->
 <template>
-  <el-container class='relationInfo'>
-        <el-header class='headerTitle'>
+  <div class='relationInfo'>
+        <div class='headerTitle'>
             <span>
                 <img :src="icon_right_arrow" alt="right icon">
            频率38.5MHz相关信息</span>
-        </el-header>
-        <section class="right_main_top unit_info">
+        </div>
+        <section class="unit_info">
             <el-row :gutter="20">
                 <el-col class="subTitle">
                     单位信息
@@ -38,19 +38,19 @@
                 </el-col>
             </el-row>
         </section>
-        <el-main class='cover_default right_main_top'>
+        <div class='cover_default'>
             <el-row :gutter="20">
                 <el-col class="subTitle">
                     附近固定站
                 </el-col>
             </el-row>
-            <el-row :gutter="0">
+            <el-row :gutter="0" style="overflow:auto; height: 50px;">
                 <el-col :span="8" class="col_flex" v-for="(item,index) in stationInfo.around_station" :key="index">
                     <a href="javascript:;" class="clickable_col">{{ item.name }}</a>
                 </el-col>
             </el-row>
-        </el-main>
-    </el-container>
+        </div>
+    </div>
 </template>
 <script>
 import * as Global_ from 'assets/js/global'
@@ -71,11 +71,10 @@ export default {
 <style>
   .relationInfo .headerTitle {
         color: #4fdaff;
-        display: flex;
-        justify-content: space-between;
         font-size: 14px;
         height: 40px;
         line-height: 40px;
+        margin-left: 10px;
     }
     .relationInfo {
         height: 250px;
@@ -83,17 +82,14 @@ export default {
         background: rgba(0,0,0,0.2);
     }
     .relationInfo .unit_info{
-        padding: 10px;
+        margin-left: 30px;
     }
     .relationInfo .cover_default {
-        padding: 0 1em;
-    }
-    .relationInfo .right_main_top {
-        top: -39px;
-        position: relative;
+        margin-left: 30px;
+        margin-top: 10px;
     }
     .relationInfo .col_flex{
-        padding: 10px 10px 0 10px;
+        padding: 10px 10px 0 0;
         color: #fff;
     }
     .relationInfo .subTitle{

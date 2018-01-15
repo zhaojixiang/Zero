@@ -1,6 +1,6 @@
 <!--频段占用度 信号覆盖率-->
 <template>
-    <el-container class='right_container'>
+    <el-container class='partCover'>
         <el-header class='headerTitle'>
             <span>
                 <img :src="icon_right_arrow" alt="right icon">
@@ -48,12 +48,12 @@ export default {
 }
 </script>
 <style scoped>
-.right_container {
+.partCover {
   border: 1px solid #4fdaff;
   margin: 0.5em 0 0 0.5em;
   padding: 0.5em 0 0 0;
 }
-.right_container .headerTitle {
+.partCover .headerTitle {
   height: 30px;
   line-height: 30px;
   color: #4fdaff;
@@ -61,15 +61,15 @@ export default {
   display: flex;
   justify-content: space-between;
 }
-.right_container .cover_default {
+.partCover .cover_default {
   padding: 0 1em;
 }
-.right_container .right_main_top {
+.partCover .right_main_top {
   top: -20px;
   left: 20px;
   position: relative;
 }
-.right_container .headerTitle .right_click_title{
+.partCover .headerTitle .right_click_title{
     margin-right: 30px;
     color:yellow;
     text-decoration: underline;

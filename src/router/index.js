@@ -19,6 +19,7 @@ import WorkAnalyze from '../views/equipmentControl/workAnalyze/workAnalyze1.vue'
 
 import DataReplayIndex from '../views/dataReplay/dataReplay.vue'
 import Details from '../views/dataReplay/details.vue'
+import StationManageIndex from '../views/stationManage/index.vue'
 import StationManageDrag from '../views/stationManage/stationManageDrag.vue'
 import StationShowIndex from 'views/stationShow/stationShow.vue'
 import AnalyseIndex from 'views/analyse/analyse1.vue'
@@ -174,7 +175,7 @@ const router = new Router({
           component: AsIndex,
           meta: {
             active: '1',
-            title:'重大活动保障辅助'
+            title: '重大活动保障辅助'
           }
         }
       ]
@@ -199,47 +200,56 @@ const router = new Router({
       path: '/StationManageIndex',
       component: App,
       children: [
-        // {
-        //   path: '/stationManage/index',
-        //   name: 'StationManageIndex',
-        //   component:StationManageIndex
-        // },
         {
-          path:'/stationManage/show',
-          name: 'StationManageShow',
-          component:StationManageDrag
+          path: '/stationManage/index',
+          meta: {
+            title: '频率台站管理'
+          },
+          name: 'StationManageIndex',
+          component: StationManageIndex
         },
+        {
+          path: '/stationManage/show',
+          name: 'StationManageShow',
+          meta: {
+            title: '频率台站管理'
+          },
+          component: StationManageDrag
+        }
       ]
     },
     {
       path: '/stationShowIndex',
-      component:App,
-      children:[
+      component: App,
+      children: [
         {
           path: '/stationShow/index',
           name: 'StationShowIndex',
+          meta: {
+            active: '1',
+            title: '台站显示'
+          },
           component: StationShowIndex
         }
       ]
     },
     {
-      path:'/analyseIndex' ,
+      path: '/analyseIndex',
       component: App,
-      children:[
+      children: [
         {
           path: '/analyse/index',
           name: 'AnalyseIndex',
-          meta:{
-            title:'频谱评估分析'
+          meta: {
+            title: '频谱评估分析'
           },
-          component: AnalyseIndex,
-
+          component: AnalyseIndex
         }
       ]
     },
     {
-      path:'/multidimensional',
-      component:App,
+      path: '/multidimensional',
+      component: App,
 
       children:[
         {

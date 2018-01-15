@@ -6,7 +6,6 @@
 </style>
 
 <script>
-import normalizeBarOption from 'assets/js/chartOptions/barOption'
   export default {
     props:{
       rateCover:{

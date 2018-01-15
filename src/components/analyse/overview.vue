@@ -10,7 +10,7 @@
             </el-header>
             <el-main class="main_container">
                 <ratioPie :option='ratioPieOption' class="pieOccupy" :setting="{width:'400px',height:'270px'}" ></ratioPie>
-                <bar-graph :width='width' :height='height' :rateCover='rateCover'></bar-graph>
+                <bar-graph :valueData='valueData' :keyData='keyData' :width='width' :height='height' :rateCover='rateCover'></bar-graph>
             </el-main>
         </el-container>
         <div class="dot" @mousedown="mouseDown" @mousemove="mousemoving" @mouseup="mouseUp" @mouseout="mouseUp"></div>                                    
@@ -18,11 +18,11 @@
 </template>
 
 <script type="text/ecmascript-6">
-import RatioPie from "components/stationManage/ratioPie.vue";
-import BarGraph from "base/barGraph";
-import * as Global_ from "assets/js/global";
+import RatioPie from "components/stationManage/ratioPie.vue"
+import BarGraph from "base/barVariable"
+import * as Global_ from "assets/js/global"
 export default {
-  props: ["ratioPieOption", "rateCover"],
+  props: ["ratioPieOption", "rateCover","valueData","keyData"],
   data() {
     return {
       width: "600px",

@@ -46,6 +46,19 @@
         </el-select>
         </el-form-item>
       </div>
+      <!--台站性质-->
+      <div class="select">
+        <el-form-item label="台站性质 :">
+        <el-select v-model="value" placeholder="请选择">
+          <el-option
+            v-for="item in options"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
+        </el-form-item>
+      </div>
     </el-form>
 
     <!--执行分析-->
@@ -77,6 +90,7 @@
   }
   .refer .el-form-item__label{
     color: #a7c9e9;
+    font-size: 10px;
   }
   .refer .select{
     float: left;
@@ -87,7 +101,7 @@
     height: 30px;
     border: none;
     color: #ffffff;
-    font-size: 14px;
+    font-size: 12px;
   }
   .refer .button{
     font-size: 16px;
@@ -108,6 +122,7 @@
     width: 140px;
     height: 30px;
     color: #ffffff;
+    font-size: 12px;
   }
 
 

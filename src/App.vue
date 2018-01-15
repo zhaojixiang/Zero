@@ -52,6 +52,15 @@
     -webkit-transform: rotate(-90deg); /* Safari 和 Chrome */
     -o-transform: rotate(-90deg); /* Opera */
   }
+  .station-marker-label{
+    position: absolute;
+    top: 8px;
+    left: 12px;
+    color: green;
+    display: block;
+    width: 30px;
+    line-height: 15px;
+  }
 </style>
 <script>
 import header1 from './components/equipmentControl/index/head.vue'

@@ -3,28 +3,29 @@
   <section>
       <!-- 头部导航 -->
     <nav1 @export='exportList'></nav1>
-    <el-row :gutter="10">
-        <el-col :span="7">
+    <section style="width: 98%; margin: 0 auto;">
+      <el-row :gutter="10">
+          <el-col :span="7">
             <!-- 相关分析 -->
-            <relevant @doAnalysis='do_analysis'></relevant>
-            <!-- 已使用频率 -->
-            <rate-lists @changeUseRate='changeUseRate' :data='rateListData'></rate-lists>
-        </el-col>
-        <!-- 地图控件 -->
-        <el-col :span="10">
-            <leaflet style='height:545px;margin-top:.5em;'></leaflet>
-        </el-col>
-        <el-col :span="7">
-            <!-- 频率 38.5MHz 相关信息 -->
-            <relation-info :stationInfo='stationInfo'></relation-info>
-            <!-- 自由仿真分析 -->
-            <free-analysis @starts='starts'></free-analysis>
-        </el-col>        
-    </el-row>
-    <el-row :gutter="20" class='clear_bottom_margin20 clear_bottom'>
-        <!-- 信道占用和功率变化趋势 -->
-        <channel :spectraBarOption='spectraBarOption'></channel>
-    </el-row>
+              <relevant></relevant>
+              <!-- 已使用频率 -->
+              <rate-lists @changeUseRate='changeUseRate' :data='rateListData'></rate-lists>
+          </el-col>
+          <el-col :span="10">
+              <leaflet style='height:552px;margin-top:10px;'></leaflet>
+          </el-col>
+          <el-col :span="7">
+            <!-- 频率相关信息 -->
+              <relation-info :stationInfo='stationInfo'></relation-info>
+              <!-- 自由仿真分析 -->
+              <free-analysis></free-analysis>
+          </el-col>
+      </el-row>
+      <el-row :gutter="20" class='clear_bottom_margin20 clear_bottom'>
+        <!-- 信道占用度 -->
+          <channel :spectraBarOption='spectraBarOption'></channel>
+      </el-row>
+    </section>
   </section>
 </template>
 <script>

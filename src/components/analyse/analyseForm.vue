@@ -13,7 +13,7 @@
             <el-form-item label-width='65px' label="业务频段:" style="margin-left:10px;">
               <el-select v-model="form_data.value" size='mini' placeholder="请选择">
                 <el-option
-                  v-for="item in form_data.options"
+                  v-for="item in options"
                   :key="item.value"
                   :label="item.label"
                   :value="item.value">
@@ -61,34 +61,13 @@
 import * as Global_ from "assets/js/global";
 
 export default {
+  props:["options"],
   data() {
     return {
       icon_right_arrow: Global_.right_arrow,
       form_data: {
         start_date: "",
         end_date: "",
-        options: [
-          {
-            value: "选项1",
-            label: "黄金糕"
-          },
-          {
-            value: "选项2",
-            label: "双皮奶"
-          },
-          {
-            value: "选项3",
-            label: "蚵仔煎"
-          },
-          {
-            value: "选项4",
-            label: "龙须面"
-          },
-          {
-            value: "选项5",
-            label: "北京烤鸭"
-          }
-        ],
         value: ""
       }
     };

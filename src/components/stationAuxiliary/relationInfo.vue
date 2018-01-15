@@ -1,12 +1,12 @@
 <!-- 频率38.5MHz相关信息 -->
 <template>
-  <el-container class='right_container1'>
-        <el-header class='headerTitle'>
+  <div class='auxiliaryInfo'>
+        <div class='headerTitle'>
             <span>
-                <img :src="icon_right_arrow" alt="right icon">                
+                <img :src="icon_right_arrow" alt="right icon">
            频率38.5MHz相关信息</span>
-        </el-header>
-        <section class="right_main_top unit_info">
+        </div>
+        <section class="unit_info">
             <el-row :gutter="20">
                 <el-col class="subTitle">
                     单位信息
@@ -44,13 +44,13 @@
                     附近固定站
                 </el-col>
             </el-row>
-            <el-row :gutter="0">
+            <el-row style="height:80px;overflow:auto;margin-bottom:5px" :gutter="0">
                 <el-col :span="8" class="col_flex" v-for="(item,index) in stationInfo.around_station" :key="index">
                     <a href="javascript:;" class="clickable_col">{{ item.name }}</a>
                 </el-col>
             </el-row>
         </el-main>
-    </el-container>
+    </div>
 </template>
 <script>
 import * as Global_ from 'assets/js/global'
@@ -69,37 +69,42 @@ export default {
 }
 </script>
 <style>
-    .right_container1 .headerTitle {
+    .auxiliaryInfo .headerTitle {
         color: #4fdaff;
         display: flex;
         justify-content: space-between;
+        height: 40px;
+        line-height: 40px;
+        font-size: 14px;
+        padding: 0 10px;
     }
-    .right_container1 {
+    .auxiliaryInfo {
         border: 1px solid #4fdaff;
-        margin: 0.5em 0 0 .5em;
-        padding: 0.5em 0 0 0;
+        background: rgba(0, 0, 0, 0.2);
+        margin-top: 10px;
     }
-    .right_container1 .unit_info{
-        padding: 10px;
+    .auxiliaryInfo .unit_info{
+      /* margin-left: 20px; */
+      margin: 0 0 10px 31px;
+        /* padding: 10px; */
     }
-    .right_container1 .cover_default {
+    .auxiliaryInfo .cover_default {
         padding: 0 1em;
     }
-    .right_container1 .right_main_top {
-        top: -39px;
-        position: relative;
+    .auxiliaryInfo .right_main_top {
+      margin-left: 20px;
     }
-    .right_container1 .col_flex{
-        padding: 10px 10px 0 10px;
+    .auxiliaryInfo .col_flex{
+        padding: 10px 10px 0 0px;
         color: #fff;
     }
-    .right_container1 .subTitle{
+    .auxiliaryInfo .subTitle{
         color:#4fdaff;
-        font-size: 15px;
+        font-size: 14px;
+        margin-bottom: 5px;
     }
-    .right_container1 .clickable_col{
+    .auxiliaryInfo .clickable_col{
         text-decoration: underline;
         color: #fdff35 !important;
     }
 </style>
-

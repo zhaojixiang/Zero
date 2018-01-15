@@ -214,15 +214,23 @@
       },
       change(event){
         // console.log(event);
+        // 频谱地图
         if(event.includes(1)){
           this.$emit('frequencyMap',true);
         }else{
           this.$emit('frequencyMap',false);
         }
+        // 网格占用度
         if(event.includes(2)){
-          this.$emit('energy',true);
+          this.$emit('energyCircle',true);
         }else{
-          this.$emit('energy',false);
+          this.$emit('energyCircle',false);
+        }
+        // 能量轨迹
+        if(event.includes(3)){
+          this.$emit('energyRetangle',true);
+        }else{
+          this.$emit('energyRetangle',false);
         }
       }
       // handleClick(tab, event) {

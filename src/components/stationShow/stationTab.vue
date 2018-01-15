@@ -31,9 +31,9 @@
           this.$emit('frequencyMap',false)
         }
         if(event.includes(2)){
-          this.$emit('energy',true)
+          this.$emit('energyCircle',true)
         }else{
-          this.$emit('energy',false)
+          this.$emit('energyCircle',false)
         }
       }
     }

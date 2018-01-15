@@ -8,46 +8,44 @@
         <el-row :gutter="20" class="clear_bottom_margin20" style="margin-top:10px">
             <el-col :span="7">
               <section class="leftContent">
-                <el-container class='zoneContainer'>
-                    <el-header height='30' class='headerTitle'>
+                <div>
+                    <div height='30' class='headerTitle'>
                         <span>
                             <img :src="icon_right_arrow" alt="right icon">
                             活动保障</span>
                         <span class='addNew' @click="addNewAct">+新增</span>
-                    </el-header>
-                    <el-main class='cover_default'>
+                    </div>
+                    <el-main class='cover_default zoneContainer' style="height:130px;">
                         <activities :data='activitiesData' @deleteItem='deleteAct'></activities>
                     </el-main>
-                </el-container>
-                <!-- 区域选择 -->
-                <el-container class='zoneContainer'>
-                    <el-header height='30' class='headerTitle'>
+                </div>
+                <div>
+                    <div height='30' class='headerTitle'>
                         <span><img :src="icon_right_arrow" alt="right icon">
                         区域选择</span>
                         <span class='addNew' @click="addNewZone">+新增</span>
-                    </el-header>
-                    <el-main class='cover_default'>
+                    </div>
+                    <el-main class='cover_default zoneContainer' style="height:130px;">
                         <zones-choice :isClick='true' :zonesData='zonesData' @deleteItem='deleteZone' @edit_rate='edit_rate' @edit_part='edit_part'></zones-choice>
                     </el-main>
-                </el-container>
-                <!-- 异常信号提取 -->
-                <el-container class='zoneContainer'>
-                    <el-header height='30' class='headerTitle'>
+                </div>
+                <div>
+                    <div height='30' class='headerTitle'>
                         <span>
                           <img :src="icon_right_arrow" alt="right icon">
                         异常信号提取
                         </span>
-                    </el-header>
+                    </div>
+                    <!-- <div class='main-title'> -->
                     <el-row class='main-title'>
                         <el-col :span="8" class='title_item'>频率(MHz)</el-col>
                         <el-col :span="8" class='title_item'>带宽(KHz)</el-col>
                         <el-col :span="8" class='title_item'>功率(dPμV)</el-col>
                     </el-row>
-                    <el-main class='cover_default'>
-                        <!-- 异常信号提取-列表数据 -->
+                    <el-main class='cover_default zoneContainer' style="height: 130px;margin-bottom:10px;">
                         <error-signl :errorInfo='errorInfo'></error-signl>
                     </el-main>
-                </el-container>
+                </div>
               </section>
             </el-col>
             <el-col :span="10">
@@ -55,55 +53,53 @@
             </el-col>
             <el-col :span="7">
               <section class="rightContent">
-                <el-container class='right_container'>
-                    <el-header class='headerTitle' style="height:40px;line-height:40px">
+                <div class='right_container'>
+                    <div class='headerTitle' style="height:40px;line-height:40px;padding: 0 10px 0 20px;">
                         <span>
                             <img :src="icon_right_arrow" alt="right icon">
                         频率覆盖率及频段占用度
                         </span>
                         <span >
                           <el-radio-group v-model="radio">
-                            <el-radio :label="1" style='color:#fff;font-size:12px'>活动前最近30天</el-radio>
-                            <el-radio :label="2" style='color:#fff;font-size:12px; margin-left:10px;'>活动期间</el-radio>
+                            <el-radio :label="1">活动前最近30天</el-radio>
+                            <el-radio :label="2" style='margin-left:10px;'>活动期间</el-radio>
                           </el-radio-group>
                         </span>
-                    </el-header>
-                    <el-main class='cover_default right_main_top'>
-                      <!-- 频率覆盖率 -->
+                    </div>
+                    <div class="doubleBar">
                         <bar-graph :width='width' :height='height' :rateCover='rateCover'></bar-graph>
-                        <!-- 频段占用度 -->
-                        <bar-graph :width='width' :height='height' style="position:relative;top:-3em;" :rateCover='ratePartCover'></bar-graph>
-                    </el-main>
-                </el-container>
-                <el-container style='position:relative;top:-78px;border-top:none;height:140px;' class='zoneContainer'>
-                    <el-header height='30' class='headerTitle'>
+                        <bar-graph :width='width' :height='height' :rateCover='ratePartCover'></bar-graph>
+                    </div>
+                </div>
+                <div style='position:relative;top:-10px;height:150px;'>
+                    <div height='30' class='headerTitle' style="margin-left:21px;">
                         <span>信号提取</span>
-                    </el-header>
+                    </div>
+                    <!-- <div class='main-title'> -->
                     <el-row class='main-title'>
                         <el-col :span="8" class='title_item'>频率(MHz)</el-col>
                         <el-col :span="8" class='title_item'>带宽(KHz)</el-col>
                         <el-col :span="8" class='title_item'>功率(dPμV)</el-col>
                     </el-row>
-                <!-- 信号提取 列表数据 -->
-                    <el-main style="padding:0 20px;">
+                    <el-main class="zoneContainer" style="padding:0 20px;height:80px;">
                         <signl-get :info='infoData'></signl-get>
                     </el-main>
-                </el-container>
+                </div>
               </section>
             </el-col>
         </el-row>
-        <el-row class='clear_bottom_margin20 clear_bottom'>
-            <el-col :span="24">
-                <span class="bottom_right" @click='openHours'>
-                    {{openHour?'收起小时用度':'展开小时用度'}}
-                    <i :class="[openHour?'el-icon-arrow-up':'el-icon-arrow-down','el-icon--right']"></i>
-                </span>
-                <!-- 信道占用度 柱状图 -->
-                <bar-graph :rateCover='transactionBarData' :width='width' height='300px'></bar-graph>
-                <!-- 热力图 -->
-                <highcharts height='450px' :data='highchartData' v-if='openHour'></highcharts>
-            </el-col>
-        </el-row>
+        <div class='clear_bottom_margin20 clear_bottom'>
+              <span class="bottom_right" @click='openHours'>
+                  {{openHour?'收起小时用度':'展开小时用度'}}
+                  <i :class="[openHour?'el-icon-arrow-up':'el-icon-arrow-down','el-icon--right']"></i>
+              </span>
+              <span class="bottomTitle">
+                  <img :src="icon_right_arrow" alt="right icon">
+              信道占用度
+              </span>
+              <bar-graph :rateCover='transactionBarData' :width='width' height='250px'></bar-graph>
+              <highcharts height='450px' :data='highchartData' v-if='openHour'></highcharts>
+        </div>
         <!-- 弹框效果 -->
         <el-dialog
           :title='edit_addNew.newTitle'
@@ -259,7 +255,7 @@ export default {
       radio: 1,
       width: "100%",
       dialog_width: "30%",
-      height: "210px",
+      height: "180px",
       highchartData: {},
       transactionBarData: {},
       activitiesData: [],
@@ -673,13 +669,14 @@ export default {
     _getChannelUsed() {
       this.$http.get("api/GetChannelUsed").then(res => {
         this.transactionBarData = normalizeBarOption({
-          title: "信道占用度",
+          title: "",
           series_data: res.data.data1,
           title_offset: "0px",
           title_top: "left",
           series_color: ["#ff8b35"],
           title_color: "#4fdaff",
-          legend_data: ["信道占用度"]
+          legend_data: ["信道占用度"],
+          legend_right: '82%'
         });
         this.highchartData = highchartOption({
           title: "",
@@ -718,7 +715,9 @@ export default {
   margin-bottom: 0;
 }
 .activities .clear_bottom {
+  position: relative;
   margin-top: 10px;
+  padding-top: 30px;
   /* margin-bottom: 10px; */
   /* padding-bottom: 10px; */
   border: 1px solid #4fdaff;
@@ -734,15 +733,17 @@ export default {
 .activities .headerTitle {
   color: #4fdaff;
   display: flex;
-  height: 28px;
-  line-height: 28px;
+  height: 40px;
+  line-height: 40px;
   font-size: 14px;
   justify-content: space-between;
+  padding: 0 10px 0 20px;
 }
 .activities .addNew {
   font-size: 12px;
   color: yellow;
   cursor: pointer;
+  padding-right: 17px;
 }
 .activities .addNew:hover {
   animation: myfirst 1s linear;
@@ -756,10 +757,10 @@ export default {
   background-color: rgba(0,0,0,0.2);
 }
 .activities .zoneContainer {
-  height: 15em;
-  overflow: hidden;
-  margin: 0.5em 0 0.5em 0.5em;
-  padding: 0.5em 0 0 0;
+  /* height: 15em; */
+  overflow: auto;
+  /* margin: 0.5em 0 0.5em 0.5em; */
+  /* padding: 0.5em 0 0 0; */
 }
 .activities .rightContent{
   height: 550px;
@@ -782,11 +783,19 @@ export default {
   /* display: flex; */
   color: #fff;
   /* position: relative; */
-  padding: 0.5em 2em;
+  /* padding: 5px 0.5%; */
+  /* padding-top:  */
+  padding-left: 4px;
+  padding-bottom: 5px;
 }
 .activities .title_item {
   /* width: 30.33%; */
   text-align: center;
+
+}
+.activities .doubleBar{
+  width: 90%;
+  margin-left: 36px;
 }
 .activities .right_bottom_list {
   height: 15em;
@@ -794,12 +803,22 @@ export default {
 }
 .activities .clear_bottom_margin20 .bottom_right {
   position: absolute;
-  right: 5em;
-  top: 1em;
+  right: 30px;
+  top: 10px;
   color: yellow;
   text-align: right;
   cursor: pointer;
   z-index: 99;
+  height: 25px;
+  line-height: 25px;
+}
+.activities .bottomTitle{
+  color: #4fdaff;
+  font-size: 14px;
+  position: absolute;
+  top: 10px;
+  left: 20px;
+
 }
 .activities .el-message-box,
 .activities .el-dialog,
@@ -828,13 +847,14 @@ export default {
   padding-top: 20px;
 }
 .activities .el-message-box__headerbtn .el-message-box__close,
-.activities .el-message-box__title,.activities .el-radio,.el-radio__input.is-checked+.el-radio__label,
+.activities .el-message-box__title,.activities .el-radio,.activities .el-radio__input.is-checked+.el-radio__label,
 .activities .el-dialog__headerbtn .el-dialog__close {
   color: #fff;
-  font-size: 12px;
+  font-size: 10px;
 }
 .activities .el-radio__label{
-  font-size: 12px;
+  font-size: 10px;
+  padding-left: 5px;
 }
 .activities .dialog_class {
   display: flex;

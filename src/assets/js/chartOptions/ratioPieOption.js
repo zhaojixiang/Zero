@@ -1,4 +1,4 @@
-export default function() {
+export default function(key_data=[],value_data=[]) {
   return {
     title : {
       text: '',
@@ -20,7 +20,7 @@ export default function() {
       top: 50,
       itemWidth: 14,
       itemHeight: 14,
-      data: ['合法','违规','非法','干扰','未分配'],
+      data: key_data,
       textStyle:{
         color: '#fff'
       }
@@ -32,13 +32,14 @@ export default function() {
         type: 'pie',
         radius : '70%',
         center: ['60%', '55%'],
-        data:[
-          {value:25, name:'合法'},
-          {value:30, name:'违规'},
-          {value:15, name:'非法'},
-          {value:25, name:'干扰'},
-          {value:5, name:'未分配'}
-        ],
+        // data:[
+        //   {value:25, name:'合法'},
+        //   {value:30, name:'违规'},
+        //   {value:15, name:'非法'},
+        //   {value:25, name:'干扰'},
+        //   {value:5, name:'未分配'}
+        // ],
+        data:value_data,
         label: {
           normal: {
             formatter: '{b} :\n{c}个 \n {d}%  ',

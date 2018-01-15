@@ -34,27 +34,30 @@ export const request = {
         // 5 信号分析
         GetSignalCalculate:params => { return axios.get(`${baseUrl}/api/SpectrumData/GetSignalCalculate`,params)}, 
         // 6 信号覆盖率
-        GetTraceSpertrum:params => { return axios.get(`${baseUrl}/api/SpectrumData/GetSignalCover`,params)},
-        // 旧 API
-
-
-        // 1 数据轨迹
-        // 1.1 查询轨迹
-        GetSignalCover:params => { return axios.get(`${baseUrl}/api/SpectrumResult/GetTrace`,params)},
-        // 1.2 查询频谱图
-        GetTraceSpertrum:params => { return axios.get(`${baseUrl}/api/SpectrumResult/GetTraceSpertrum`,params)},
-        // 2 频谱地图（Map）
-        GetMap:params => { return axios.get(`${baseUrl}/api/SpectrumResult/GetMap`,params)},
-        // 3 信道占用度（Channel）
-        Channel:{
-            // 3.1 查询信道
-            GetChannel:params => { return axios.get(`${baseUrl}/api/SpectrumResult/GetChannel`,params)},
-            // 3.2 查询基站
-            GetStation:params => { return axios.get(`${baseUrl}/api/SpectrumResult/GetStation`,params)}
-        },
-        // 4. 网格占用度（Grid）
-        GetGrid:params => { return axios.get(`${baseUrl}/api/SpectrumResult/GetGrid`,params)},
-        // 5. 信号覆盖率（Signal）
-        GetSignal:params => { return axios.get(`${baseUrl}/api/SpectrumResult/GetSignal`,params)},
+        GetSignalCover:params => { return axios.get(`${baseUrl}/api/SpectrumData/GetSignalCover`,params)},
+        
+        /* ===============================================楚河 汉界======================================================== */
+        // 旧 API  
+              
+        before:{
+            // 1 数据轨迹
+            // 1.1 查询轨迹
+            GetTrace:params => { return axios.get(`${baseUrl}/api/SpectrumResult/GetTrace`,params)},
+            // 1.2 查询频谱图
+            GetTraceSpertrum:params => { return axios.get(`${baseUrl}/api/SpectrumResult/GetTraceSpertrum`,params)},
+            // 2 频谱地图（Map）
+            GetMap:params => { return axios.get(`${baseUrl}/api/SpectrumResult/GetMap`,params)},
+            // 3 信道占用度（Channel）
+            Channel:{
+                // 3.1 查询信道
+                GetChannel:params => { return axios.get(`${baseUrl}/api/SpectrumResult/GetChannel`,params)},
+                // 3.2 查询基站
+                GetStation:params => { return axios.get(`${baseUrl}/api/SpectrumResult/GetStation`,params)}
+            },
+            // 4. 网格占用度（Grid）
+            GetGrid:params => { return axios.get(`${baseUrl}/api/SpectrumResult/GetGrid`,params)},
+            // 5. 信号覆盖率（Signal）
+            GetSignal:params => { return axios.get(`${baseUrl}/api/SpectrumResult/GetSignal`,params)},
+        }
     }
 }

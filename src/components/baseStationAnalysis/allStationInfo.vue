@@ -88,4 +88,7 @@ export default {
 .wrapper .el-pagination button.disabled{
   background: none;
 }
+::-webkit-scrollbar {
+  display: none;
+}
 </style>
