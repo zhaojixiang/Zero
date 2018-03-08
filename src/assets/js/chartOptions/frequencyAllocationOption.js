@@ -12,7 +12,8 @@ const dataPre = {
 const dataView = ['nodes', nodes => {
   return nodes.map(node => ({
     ...node,
-    value:node.data.value,
+    startFreq:node.data.freq,
+    endFreq:node.data.endFreq,
     legend:node.data.legend != undefined ? node.data.legend : {color: '#eee'},
   }));
 }];

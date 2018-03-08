@@ -1,14 +1,13 @@
 <template>
-    <chart :options="option" :style="setting"></chart>
+    <chart class="ratio" :options="option" :style="setting"></chart>
 </template>
 <style scoped>
+  .ratio {
+    color: #8F9091;
+  }
 </style>
 <script>
   export default {
-    props: ['option','data','setting'],
-    data: function() {
-      return {
-      }
-    }
+    props: ['option','setting']
   }
 </script>

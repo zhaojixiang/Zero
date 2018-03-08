@@ -2,10 +2,13 @@
   <div id="app">
     <!--页头-->
     <header1/>
-    <router-view/>
+    <keep-alive>
+      <router-view/>
+    </keep-alive>
   </div>
 </template>
-<style>
+<style lang='less'>
+  @import './assets/css/mixin.less';
   a {
     text-decoration: none;
   }
@@ -32,7 +35,7 @@
       line-height: 40px;
   }
   .leaf-alert .leaflet-popup-content-wrapper, .leaflet-popup-tip {
-    background: rgba(58,158,246,0.8) !important;
+    /*background: rgba(58,158,246,0.8) !important;*/
   }
   .ivu-loading-bar {
     position: absolute;
@@ -60,6 +63,51 @@
     display: block;
     width: 30px;
     line-height: 15px;
+  }
+  .side-span {
+    position: absolute;
+    z-index: 1001;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .side-span span {
+    width: 20px;
+    background: #2F74A1;
+    display: inline-block;
+    text-align: center;
+    padding: 0 10px;
+    -webkit-writing-mode: vertical-lr;
+    writing-mode: vertical-lr;
+    letter-spacing: 5px;
+    cursor: pointer;
+    border-top: solid 1px #fff;
+    color: #ffffff;
+  }
+  .minus {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .i-minus {
+    width: 20px;
+    text-align: center;
+    color:#6192B4 !important;
+  }
+  .form-err {
+    border: solid 1px red;
+  }
+  .change .el-checkbox__label {
+    width: 120px;
+    text-align: left;
+  }
+  .change .el-checkbox+.el-checkbox {
+    margin-left: 0;
+  }
+  .data-reply .el-slider__runway {
+     margin:0 !important;
   }
 </style>
 <script>

@@ -29,7 +29,7 @@ export default {
 .leafletPopup{
   width: 200px;
   height: 100px;
-  background: #5294d1;
+  background: rgba(58,158,246,0.2);
 }
 .leafletPopup h3{
   font-weight: normal;

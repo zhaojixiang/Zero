@@ -5,6 +5,7 @@
             <span>
                 <img :src="icon_right_arrow" alt="right icon">
            频率38.5MHz相关信息</span>
+          <span class="minus" @click="close"><i class="el-icon-close i-minus"></i></span>
         </div>
         <section class="unit_info">
             <el-row :gutter="20">
@@ -44,7 +45,7 @@
                     附近固定站
                 </el-col>
             </el-row>
-            <el-row style="height:80px;overflow:auto;margin-bottom:5px" :gutter="0">
+            <el-row style="margin-bottom:10px" :gutter="0">
                 <el-col :span="8" class="col_flex" v-for="(item,index) in stationInfo.around_station" :key="index">
                     <a href="javascript:;" class="clickable_col">{{ item.name }}</a>
                 </el-col>
@@ -53,19 +54,22 @@
     </div>
 </template>
 <script>
-import * as Global_ from 'assets/js/global'
-
 export default {
   props:{
       stationInfo:{
           type:Object
       }
   },
-  data() {
-      return {
-          icon_right_arrow:Global_.right_arrow
-      }
-  }
+  computed: {
+    icon_right_arrow() {
+      return this.$const.right_arrow
+    }
+  },
+  methods:{
+    close(){
+      this.$emit('close');
+    },
+  },
 }
 </script>
 <style>
@@ -77,11 +81,12 @@ export default {
         line-height: 40px;
         font-size: 14px;
         padding: 0 10px;
+        border-bottom: solid 1px #dfe4ed;
     }
     .auxiliaryInfo {
         border: 1px solid #4fdaff;
-        background: rgba(0, 0, 0, 0.2);
-        margin-top: 10px;
+        background: #FEFEFE;
+        width: 400px;
     }
     .auxiliaryInfo .unit_info{
       /* margin-left: 20px; */
@@ -96,15 +101,15 @@ export default {
     }
     .auxiliaryInfo .col_flex{
         padding: 10px 10px 0 0px;
-        color: #fff;
+        color: #88898A;
     }
     .auxiliaryInfo .subTitle{
         color:#4fdaff;
         font-size: 14px;
-        margin-bottom: 5px;
+        margin-top: 5px;
     }
     .auxiliaryInfo .clickable_col{
         text-decoration: underline;
-        color: #fdff35 !important;
+        color: #88898A !important;
     }
 </style>

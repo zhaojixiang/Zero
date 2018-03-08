@@ -20,7 +20,7 @@
     list-style: none;
   }
   .hello {
-    width: 400px;
+    width: 440px;
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
@@ -44,7 +44,7 @@
   }
   .box1{
     padding: 10px;
-    width: 180px;
+    width: 200px;
   }
   span{
     color: #e8f04d;

@@ -107,6 +107,7 @@
             citycode:this.$store.state.currentLocation.code,
             year:dateData.endyear,
           }).then(res=>{
+              console.info('========',res.data)
               this.$refs.map.initMarker(res.data);
           });
       },

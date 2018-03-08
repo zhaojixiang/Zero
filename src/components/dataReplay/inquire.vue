@@ -52,9 +52,7 @@
       </div>
     </div>
     <!--执行分析-->
-    <button class="button">
-      执行分析
-    </button>
+    <el-button type="primary">执行分析</el-button>
   </div>
 </template>
 <style>
@@ -92,7 +90,7 @@
     width: 200px;
     height: 30px;
     border: none;
-    color: #ffffff;
+    color: #696969;
     font-size: 12px;
   }
   .inquire .scope {
@@ -111,7 +109,7 @@
     background-color: #3c78af;
     width: 80px;
     border-radius: 4px;
-    color: #ffffff;
+    color: #696969;
     text-indent: 10px;
   }
   .inquire .scope p:nth-of-type(2){
@@ -136,32 +134,38 @@
     background: #3c78af;
     height: 30px;
     line-height: 30px;
-    color: #ffffff;
+    color: #696969;
     border: none;
   }
-  .inquire .button{
+  /* .inquire .button{
     font-size: 16px;
-    color: #a7c9e9;
+    color: #fff;
     text-align: center;
     height: 40px;
-    width: 100%;
+    width: 50%;
     line-height: 40px;
-    border-top: solid 1px #3388ff;
-    border-bottom: none;
-    border-left: none;
-    border-right: none;
-    background: #3c78af;
+    margin: 0 auto;
+    border: none;
+    background: #64a6d1;
+  } */
+  /* 按钮 */
+  .inquire .el-button{
+    margin-left: 37%;
+    margin-bottom: 5px;
+    background: #64a6d1;
+    border: none;
+    width: 160px;
   }
   .inquire .select .el-input__inner{
-    background: #3c78af;
+    background: #eaedec;
     border: none;
     width: 200px;
     height: 30px;
-    color: #ffffff;
+    color: #696969;
     font-size: 12px;
   }
   .time .el-input--prefix .el-input__inner{
-    background: #3c78af !important;
+    background: #eaedec !important;
     width: 150px;
   }
   .time .el-date-editor.el-input, .el-date-editor.el-input__inner{
@@ -172,13 +176,13 @@
     margin-bottom: 20px;
   }
   .el-radio__input.is-checked+.el-radio__label{
-    color: #ffffff;
+    color: #696969;
   }
   .el-radio__inner{
-    background: #225c92;
+    background: #eaedec;
   }
   .el-radio__input.is-checked .el-radio__inner{
-    background: #225c92;
+    background: #eaedec;
   }
 
 

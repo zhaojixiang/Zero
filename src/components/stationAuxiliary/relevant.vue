@@ -2,18 +2,22 @@
 <template>
   <div class='auxiliary'>
     <div class='headerTitle'>
-        <span>
+        <!-- <span style="margin-right: 10px">
             <img :src="icon_right_arrow" alt="right icon">
             相关分析
-        </span>
-        <el-radio-group style="line-height:50px;height:40px;" v-model="radio">
-            <el-radio :label="1" style='color:#fff;'>选择频段</el-radio>
-            <el-radio :label="2" style='color:#fff;'>自定义频段</el-radio>
-        </el-radio-group>
+        </span> -->
+      <el-tabs v-model="radio" type="card" @tab-click="handleClick" style="height: 40px;">
+        <el-tab-pane name="1" :disabled="true">
+          <span slot="label"><img :src="icon_right_arrow" alt="right icon"> 相关分析</span>
+        </el-tab-pane>
+        <el-tab-pane label="选择频段" name="2"></el-tab-pane>
+        <el-tab-pane label="自定义频段" name="3"></el-tab-pane>
+      </el-tabs>
+      <span class="minus" @click="minus"><i class="el-icon-minus i-minus"></i></span>
     </div>
     <el-main class='cover_default2' :model='form_data'>
         <el-form :inline="true">
-            <section v-if="radio==1" style="margin-left:32px;" class="inner_input">
+            <section v-if="radio==2" style="margin-left:32px;" class="inner_input">
                 <el-form-item label="选择频段 :">
                     <el-select v-model="value" size="mini" placeholder="请选择">
                         <el-option
@@ -48,18 +52,18 @@
                     </el-col>
                 </el-row>
             </section>
-          <el-button @click="do_analysis" type="primary" size='medium'>执行分析</el-button>
         </el-form>
+        <div class="relevantBtn">
+          <el-button @click="doAnalysis" type="primary" size='mini'>执行分析</el-button>
+        </div>
     </el-main>
   </div>
 </template>
 <script>
-import * as Global_ from "assets/js/global";
 export default {
   data() {
     return {
-      icon_right_arrow: Global_.right_arrow,
-      radio: 1,
+      radio: '2',
       value: [],
       form_data:{
         start_rate: "88",
@@ -86,31 +90,42 @@ export default {
       }
     };
   },
+  computed: {
+    icon_right_arrow() {
+      return this.$const.right_arrow
+    }
+  },
   methods: {
-    do_analysis() {
+    doAnalysis() {
       // console.log("Do analysis right now!");
       this.$emit('doAnalysis',this.form_data)
-    }
+    },
+    handleClick(item){
+    },
+    minus(){
+      this.$emit('minus')
+    },
   }
 };
 </script>
 <style>
 .auxiliary {
-  height: 160px;
+  height: 135px;
   overflow: hidden;
   border: 1px solid #4fdaff;
-  background: rgba(0, 0, 0, 0.2);
-  margin-top: 10px;
-  /* margin: 0.5em 0 0.5em 0.5em; */
+  background: #FEFEFE;
+  position: relative;
 }
 .auxiliary .headerTitle {
   color: #4fdaff;
-  display: flex;
-  justify-content: space-between;
   font-size: 14px;
-  padding: 0 10px;
   height: 40px;
   line-height: 40px;
+}
+.minus{
+  position: absolute;
+  top: 0px;
+  right: 14px;
 }
 .auxiliary .cover_default2 {
   color: #fff;
@@ -126,39 +141,35 @@ export default {
 }
 .auxiliary .cover_default2 .el-form-item__label {
   font-size: 10px;
-  color: #b7dbfd;
+  color: #88898A;
 }
-.auxiliary .cover_default2 .el-button--medium {
-  width: 100%;
-  margin: 0;
-  border-radius: 0;
-  border-color: #33ccff transparent transparent transparent;
-  background-color: #2b73a2;
-  height: 39px;
-  font-size: 18px;
+.auxiliary .cover_default2 .el-button--mini {
+  width: 30%;
+  background-color: #64a6d1;
 }
 .auxiliary .cover_default2 .el-input__inner {
-  background-color: #3c78af;
-  color: #fff;
-  border-color: #67a3dc;
-  /* width: 95px; */
+  color: #88898A;
 }
 .auxiliary .el-radio__input.is-checked+.el-radio__label{
-  color: #fff;
+  color: #88898A;
 }
 .auxiliary .el-popper[x-placement^=bottom] .popper__arrow{
   left: 68% !important;
 }
-
- /* .auxiliary .cover_default2 .el-input--prefix .el-input__inner{
-    background: #3c78af !important;
-    width: 95px;
-  } */
+.el-form-item{
+  margin: 0px;
+}
   .auxiliary .cover_default2 .rightInput .el-input__inner,.auxiliary .rightInput .el-form--inline .el-form-item__content{
     width: 95px;
   }
-
-  /* .auxiliary .rightInput .el-form--inline .el-form-item__content,.auxiliary .rightInput .el-input-number--mini{
-    width: 95px;
-  } */
+.el-tabs__item.is-disabled{
+  color: #25769e;
+}
+.el-tabs__item{
+  color: #686868;
+}
+.relevantBtn{
+  width: 100%;
+  text-align: center;
+}
 </style>

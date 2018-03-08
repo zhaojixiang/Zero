@@ -1,20 +1,35 @@
-export default function({title = ''} = {}){
+export default function({title = '',xAxis=[],series=[]} = {}){
+  let legend = [];
+  for (let i=0;i<series.length;i++){
+    legend.push(series[i].name);
+  }
   return{
     title:{
-      text:'',
-      left: 30,
+      text:title,
+      left:'40%',
+      top:10,
       textStyle:{
-        color:'#fff',
+        color:'#8F9091',
         fontWeight:'normal',
         fontSize: 14
       }
     },
-    color: ['#e47c61', '#13c0a5'],
+    // color: ['#e47c61', '#13c0a5'],
     tooltip : {
       trigger: 'axis',
       axisPointer : {            // 坐标轴指示器，坐标轴触发有效
         type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
-      }
+      },
+      formatter: function(params){
+        let str = '';
+        for (let i=0;i<params.length;i++){
+          if(i==0){
+            str+=`${params[i].name}:<br/>`;
+          }
+          str+="&nbsp;&nbsp;&nbsp;&nbsp;"+params[i].seriesName+":"+params[i].value+"<br/>"
+        }
+        return str;
+      },
     },
     legend: {
       top: 30,
@@ -22,9 +37,9 @@ export default function({title = ''} = {}){
       itemWidth: 14,
       itemHeight: 14,
       textStyle: {
-        color: '#fff'
+        color: '#8F9091'
       },
-      data: ['非法信道占用度', '合法信道占用度']
+      data: legend,
     },
     grid: {
       left: '3%',
@@ -35,19 +50,20 @@ export default function({title = ''} = {}){
     xAxis : [
       {
         type : 'category',
-        data : ['1日\n17:00', '1日\n17:00', '1日\n17:00', '1日\n17:00', '1日\n17:00', '1日\n17:00', '1日\n17:00','1日\n17:00', '1日\n17:00', '1日\n17:00', '1日\n17:00', '1日\n17:00', '1日\n17:00', '1日\n17:00','1日\n17:00', '1日\n17:00', '1日\n17:00', '1日\n17:00', '1日\n17:00', '1日\n17:00'],
+        // data : ['1日\n17:00', '1日\n17:00', '1日\n17:00', '1日\n17:00', '1日\n17:00', '1日\n17:00', '1日\n17:00','1日\n17:00', '1日\n17:00', '1日\n17:00', '1日\n17:00', '1日\n17:00', '1日\n17:00', '1日\n17:00','1日\n17:00', '1日\n17:00', '1日\n17:00', '1日\n17:00', '1日\n17:00', '1日\n17:00'],
+        data : xAxis,
         axisTick: {
           alignWithLabel: true
         },
         axisLine: {
           lineStyle: {
-            color: '#fff'
+            color: '#8F9091'
           }
         },
         axisLabel: {
           interval: 0,
           textStyle: {
-            color: '#fff',
+            color: '#8F9091',
             fontSize: 10
           }
         }
@@ -59,33 +75,24 @@ export default function({title = ''} = {}){
         show: true,
         axisLine: {
           lineStyle: {
-            color: '#fff'
+            color: '#8F9091'
           }
         },
+        name:'功率(dBμV)',
+        nameLocation:'center',
+        nameGap:20,
         axisLabel: {
           show: true,
           interval: 'auto',
-          formatter: '{value} %',
+          formatter: '{value}',
           textStyle: {
-            color: '#fff',
+            color: '#8F9091',
             fontSize: 10
           }
         }
       }
     ],
     series : [
-      {
-        name:'非法信道占用度',
-        type:'bar',
-        barWidth: '40%',
-        data:[38, 45, 87, 99, 12, 44, 55, 77, 43, 45, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-      },
-      {
-        name:'合法信道占用度',
-        type:'bar',
-        barWidth: '40%',
-        data:[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 77, 43, 45, 38, 45, 87, 99, 12, 44, 55]
-      },
       {
         name:'直接访问',
         type:'line',
@@ -100,5 +107,6 @@ export default function({title = ''} = {}){
         }
       }
     ]
+    // series:series
   }
 }

@@ -1,0 +1,976 @@
+{
+  "Freqs": {
+    "broadCast": {
+      "brim": [{
+          "-start": "566000000",
+          "-step": "25000",
+          "-stop": "572000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "(边境地区)566MHz-572MHz 电视频道"
+        },
+        {
+          "-start": "572000000",
+          "-step": "25000",
+          "-stop": "580000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "(边境地区)572MHz-580MHz 电视频道"
+        },
+        {
+          "-start": "580000000",
+          "-step": "25000",
+          "-stop": "588000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "(边境地区)580MHz-566MHz 电视频道"
+        },
+        {
+          "-start": "588000000",
+          "-step": "25000",
+          "-stop": "596000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "(边境地区)586MHz-596MHz 电视频道"
+        },
+        {
+          "-start": "596000000",
+          "-step": "25000",
+          "-stop": "606000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "(边境地区)596MHz-606MHz 电视频道"
+        },
+        {
+          "-start": "806000000",
+          "-step": "25000",
+          "-stop": "814000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "(边境地区)806MHz-814MHz 电视频道50"
+        },
+        {
+          "-start": "814000000",
+          "-step": "25000",
+          "-stop": "822000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "(边境地区)814MHz-822MHz 电视频道51"
+        },
+        {
+          "-start": "822000000",
+          "-step": "25000",
+          "-stop": "830000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "(边境地区)822MHz-830MHz 电视频道52"
+        },
+        {
+          "-start": "830000000",
+          "-step": "25000",
+          "-stop": "838000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "(边境地区)830MHz-838MHz 电视频道53"
+        },
+        {
+          "-start": "838000000",
+          "-step": "25000",
+          "-stop": "846000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "(边境地区)838MHz-846MHz 电视频道54"
+        },
+        {
+          "-start": "846000000",
+          "-step": "25000",
+          "-stop": "854000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "(边境地区)846MHz-854MHz 电视频道55"
+        },
+        {
+          "-start": "854000000",
+          "-step": "25000",
+          "-stop": "862000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "(边境地区)854MHz-862MHz 电视频道56"
+        },
+        {
+          "-start": "862000000",
+          "-step": "25000",
+          "-stop": "870000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "(边境地区)862MHz-870MHz 电视频道57"
+        },
+        {
+          "-start": "870000000",
+          "-step": "25000",
+          "-stop": "878000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "(边境地区)870MHz-878MHz 电视频道58"
+        },
+        {
+          "-start": "878000000",
+          "-step": "25000",
+          "-stop": "886000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "(边境地区)878MHz-886MHz 电视频道59"
+        },
+        {
+          "-start": "886000000",
+          "-step": "25000",
+          "-stop": "894000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "(边境地区)886MHz-894MHz 电视频道60"
+        },
+        {
+          "-start": "894000000",
+          "-step": "25000",
+          "-stop": "902000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "(边境地区)894MHz-902MHz 电视频道61"
+        }
+      ],
+      "continent": [{
+          "-start": "48500000",
+          "-step": "25000",
+          "-stop": "56500000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "48.5MHz-56.5MHz 电视频道1"
+        },
+        {
+          "-start": "56500000",
+          "-step": "25000",
+          "-stop": "64500000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "56.5MHz-64.5MHz 电视频道2"
+        },
+        {
+          "-start": "64500000",
+          "-step": "25000",
+          "-stop": "72500000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "64.5MHz-72.5MHz 电视频道3"
+        },
+        {
+          "-start": "76000000",
+          "-step": "25000",
+          "-stop": "84000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "76MHz-84MHz 电视频道4"
+        },
+        {
+          "-start": "84000000",
+          "-step": "25000",
+          "-stop": "92000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "84MHz-92MHz 电视频道5"
+        },
+        {
+          "-start": "88000000",
+          "-step": "25000",
+          "-stop": "108000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "88MHz-108MHz 广播"
+        },
+        {
+          "-start": "167000000",
+          "-step": "25000",
+          "-stop": "175000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "167MHz-175MHz 电视频道6"
+        },
+        {
+          "-start": "175000000",
+          "-step": "25000",
+          "-stop": "183000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "175MHz-183MHz 电视频道7"
+        },
+        {
+          "-start": "183000000",
+          "-step": "25000",
+          "-stop": "191000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "183MHz-191MHz 电视频道8"
+        },
+        {
+          "-start": "191000000",
+          "-step": "25000",
+          "-stop": "199000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "191MHz-199MHz 电视频道9"
+        },
+        {
+          "-start": "199000000",
+          "-step": "25000",
+          "-stop": "207000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "199MHz-207MHz 电视频道10"
+        },
+        {
+          "-start": "207000000",
+          "-step": "25000",
+          "-stop": "215000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "207MHz-215MHz 电视频道11"
+        },
+        {
+          "-start": "215000000",
+          "-step": "25000",
+          "-stop": "223000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "215MHz-223MHz 电视频道12"
+        },
+        {
+          "-start": "470000000",
+          "-step": "25000",
+          "-stop": "478000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "470MHz-478MH 电视频道13"
+        },
+        {
+          "-start": "478000000",
+          "-step": "25000",
+          "-stop": "486000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "478MH-486MHz 电视频道14"
+        },
+        {
+          "-start": "486000000",
+          "-step": "25000",
+          "-stop": "494000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "486MHz-494MHz 电视频道15"
+        },
+        {
+          "-start": "494000000",
+          "-step": "25000",
+          "-stop": "502000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "494MHz-502MHz 电视频道16"
+        },
+        {
+          "-start": "502000000",
+          "-step": "25000",
+          "-stop": "510000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "502MHz-510MHz 电视频道17"
+        },
+        {
+          "-start": "510000000",
+          "-step": "25000",
+          "-stop": "518000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "510MHz-518MHz 电视频道18"
+        },
+        {
+          "-start": "518000000",
+          "-step": "25000",
+          "-stop": "526000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "518MHz-526MHz 电视频道19"
+        },
+        {
+          "-start": "526000000",
+          "-step": "25000",
+          "-stop": "534000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "526MHz-534MHz 电视频道20"
+        },
+        {
+          "-start": "534000000",
+          "-step": "25000",
+          "-stop": "542000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "534MHz-542MHz 电视频道21"
+        },
+        {
+          "-start": "542000000",
+          "-step": "25000",
+          "-stop": "550000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "542MHz-550MHz 电视频道22"
+        },
+        {
+          "-start": "550000000",
+          "-step": "25000",
+          "-stop": "558000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "550MHz-558MHz 电视频道23"
+        },
+        {
+          "-start": "558000000",
+          "-step": "25000",
+          "-stop": "566000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "558MHz-566MHz 电视频道24"
+        },
+        {
+          "-start": "606000000",
+          "-step": "25000",
+          "-stop": "614000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "606MHz-614MHz 电视频道25"
+        },
+        {
+          "-start": "614000000",
+          "-step": "25000",
+          "-stop": "622000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "614MHz-622MHz 电视频道26"
+        },
+        {
+          "-start": "622000000",
+          "-step": "25000",
+          "-stop": "630000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "622MHz-630MHz 电视频道27"
+        },
+        {
+          "-start": "630000000",
+          "-step": "25000",
+          "-stop": "638000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "630MHz-638MHz 电视频道28"
+        },
+        {
+          "-start": "638000000",
+          "-step": "25000",
+          "-stop": "646000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "638MHz-646MHz 电视频道29"
+        },
+        {
+          "-start": "646000000",
+          "-step": "25000",
+          "-stop": "654000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "646MHz-654MHz 电视频道30"
+        },
+        {
+          "-start": "654000000",
+          "-step": "25000",
+          "-stop": "662000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "654MHz-662MHz 电视频道31"
+        },
+        {
+          "-start": "662000000",
+          "-step": "25000",
+          "-stop": "670000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "662MHz-670MHz 电视频道32"
+        },
+        {
+          "-start": "670000000",
+          "-step": "25000",
+          "-stop": "678000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "670MHz-678MHz 电视频道33"
+        },
+        {
+          "-start": "678000000",
+          "-step": "25000",
+          "-stop": "686000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "678MHz-686MHz 电视频道34"
+        },
+        {
+          "-start": "686000000",
+          "-step": "25000",
+          "-stop": "694000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "686MHz-694MHz 电视频道35"
+        },
+        {
+          "-start": "694000000",
+          "-step": "25000",
+          "-stop": "702000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "694MHz-702MHz 电视频道36"
+        },
+        {
+          "-start": "702000000",
+          "-step": "25000",
+          "-stop": "710000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "702MHz-710MHz 电视频道37"
+        },
+        {
+          "-start": "710000000",
+          "-step": "25000",
+          "-stop": "718000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "710MHz-718MHz 电视频道38"
+        },
+        {
+          "-start": "718000000",
+          "-step": "25000",
+          "-stop": "726000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "718MHz-726MHz 电视频道39"
+        },
+        {
+          "-start": "726000000",
+          "-step": "25000",
+          "-stop": "734000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "726MHz-734MHz 电视频道40"
+        },
+        {
+          "-start": "734000000",
+          "-step": "25000",
+          "-stop": "742000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "734MHz-742MHz 电视频道41"
+        },
+        {
+          "-start": "742000000",
+          "-step": "25000",
+          "-stop": "750000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "742MHz-750MHz 电视频道42"
+        },
+        {
+          "-start": "750000000",
+          "-step": "25000",
+          "-stop": "758000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "750MHz-758MHz 电视频道43"
+        },
+        {
+          "-start": "758000000",
+          "-step": "25000",
+          "-stop": "766000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "758MHz-766MHz 电视频道44"
+        },
+        {
+          "-start": "766000000",
+          "-step": "25000",
+          "-stop": "774000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "766MHz-774MHz 电视频道45"
+        },
+        {
+          "-start": "774000000",
+          "-step": "25000",
+          "-stop": "782000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "774MHz-782MHz 电视频道46"
+        },
+        {
+          "-start": "782000000",
+          "-step": "25000",
+          "-stop": "790000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "782MHz-790MHz 电视频道47"
+        },
+        {
+          "-start": "790000000",
+          "-step": "25000",
+          "-stop": "798000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "790MHz-798MHz 电视频道48"
+        },
+        {
+          "-start": "798000000",
+          "-step": "25000",
+          "-stop": "806000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "798MHz-806MHz 电视频道49"
+        },
+        {
+          "-start": "910000000",
+          "-step": "25000",
+          "-stop": "918000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "910MHz-918MHz 电视频道62"
+        },
+        {
+          "-start": "918000000",
+          "-step": "25000",
+          "-stop": "926000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "918MHz-926MHz 电视频道63"
+        },
+        {
+          "-start": "926000000",
+          "-step": "25000",
+          "-stop": "934000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "926MHz-934MHz 电视频道64"
+        },
+        {
+          "-start": "934000000",
+          "-step": "25000",
+          "-stop": "942000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "934MHz-942MHz 电视频道65"
+        },
+        {
+          "-start": "942000000",
+          "-step": "25000",
+          "-stop": "950000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "942MHz-950MHz 电视频道66"
+        },
+        {
+          "-start": "950000000",
+          "-step": "25000",
+          "-stop": "958000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "950MHz-958MHz 电视频道67"
+        },
+        {
+          "-start": "958000000",
+          "-step": "25000",
+          "-stop": "966000000",
+          "-threshold": "106",
+          "-block": "10",
+          "-company": "广电",
+          "-system": "FM",
+          "-remark": "958MHz-966MHz 电视频道68"
+        }
+      ]
+    },
+    "station": [{
+        "-start": "450000000",
+        "-step": "25000",
+        "-stop": "470000000",
+        "-threshold": "103",
+        "-block": "10",
+        "-system": "lte-fdd",
+        "-remark": "450MHz-470MHz"
+      },
+      {
+        "-start": "870000000",
+        "-step": "500000",
+        "-stop": "880000000",
+        "-threshold": "-3",
+        "-block": "0",
+        "-company": "中国电信",
+        "-system": "cdma",
+        "-remark": "870MHz-880MHz CDMA2000 中国电信"
+      },
+      {
+        "-start": "930000000",
+        "-step": "25000",
+        "-stop": "934000000",
+        "-threshold": "103",
+        "-block": "8",
+        "-company": "中国铁路",
+        "-system": "gsm-r",
+        "-remark": "930MHz-934MHz GSM-R"
+      },
+      {
+        "-start": "934000000",
+        "-step": "25000",
+        "-stop": "954000000",
+        "-threshold": "103",
+        "-block": "8",
+        "-company": "中国移动",
+        "-system": "gsm",
+        "-remark": "934MHz-954MHz GSM 中国移动"
+      },
+      {
+        "-start": "954000000",
+        "-step": "25000",
+        "-stop": "960000000",
+        "-threshold": "103",
+        "-block": "8",
+        "-company": "中国联通",
+        "-system": "gsm",
+        "-remark": "954MHz-960MHz GSM 中国联通"
+      },
+      {
+        "-start": "1805000000",
+        "-step": "25000",
+        "-stop": "1830000000",
+        "-threshold": "103",
+        "-block": "8",
+        "-company": "中国移动",
+        "-system": "gsm",
+        "-remark": "1805MHz-1830MHz GSM 中国移动"
+      },
+      {
+        "-start": "1830000000",
+        "-step": "25000",
+        "-stop": "1840000000",
+        "-threshold": "103",
+        "-block": "8",
+        "-company": "中国联通",
+        "-system": "gsm",
+        "-remark": "1830MHz-1840MHz GSM 中国联通"
+      },
+      {
+        "-start": "1840000000",
+        "-step": "500000",
+        "-stop": "1860000000",
+        "-threshold": "-6",
+        "-block": "0",
+        "-company": "中国联通",
+        "-system": "gsm/lte-fdd",
+        "-remark": "1840MHz-1860MHz LTE-FDD 中国联通"
+      },
+      {
+        "-start": "1860000000",
+        "-step": "500000",
+        "-stop": "1875000000",
+        "-threshold": "-6",
+        "-block": "0",
+        "-company": "中国电信",
+        "-system": "lte-fdd",
+        "-remark": "1860MHz-1875MHz LTE-FDD 中国电信"
+      },
+      {
+        "-start": "1875000000",
+        "-step": "25000",
+        "-stop": "1880000000",
+        "-threshold": "106",
+        "-block": "10",
+        "-remark": "1875MHz-1880MHz"
+      },
+      {
+        "-start": "1880000000",
+        "-step": "500000",
+        "-stop": "1915000000",
+        "-threshold": "-6",
+        "-block": "0",
+        "-company": "中国移动",
+        "-system": "lte-tdd/td-scdma",
+        "-remark": "1880MHz-1915MHz TD-LTE/TD-SCDMA 中国移动"
+      },
+      {
+        "-start": "1915000000",
+        "-step": "25000",
+        "-stop": "1920000000",
+        "-threshold": "103",
+        "-block": "10",
+        "-remark": "1915MHz-1920MHz"
+      },
+      {
+        "-start": "2010000000",
+        "-step": "500000",
+        "-stop": "2025000000",
+        "-threshold": "-6",
+        "-block": "0",
+        "-company": "中国移动",
+        "-system": "td-scdma",
+        "-remark": "2010MHz-2025MHz TD-SCDMA 中国移动"
+      },
+      {
+        "-start": "2110000000",
+        "-step": "500000",
+        "-stop": "2130000000",
+        "-threshold": "-6",
+        "-block": "0",
+        "-company": "中国移动",
+        "-system": "lte-fdd",
+        "-remark": "2110MHz-2130MHz LTE-FDD 中国电信"
+      },
+      {
+        "-start": "2130000000",
+        "-step": "500000",
+        "-stop": "2155000000",
+        "-threshold": "-6",
+        "-block": "0",
+        "-company": "中国联通",
+        "-system": "wcdma",
+        "-remark": "2130MHz-2155MHz WCDMA 中国联通"
+      },
+      {
+        "-start": "2155000000",
+        "-step": "25000",
+        "-stop": "2170000000",
+        "-threshold": "103",
+        "-block": "10",
+        "-remark": "2155MHz-2170MHz"
+      },
+      {
+        "-start": "2300000000",
+        "-step": "500000",
+        "-stop": "2320000000",
+        "-threshold": "-6",
+        "-block": "0",
+        "-company": "中国联通",
+        "-system": "lte-tdd",
+        "-remark": "2300MHz-2320MHz TD-LTE 中国联通 室内"
+      },
+      {
+        "-start": "2320000000",
+        "-step": "500000",
+        "-stop": "2370000000",
+        "-threshold": "-6",
+        "-block": "0",
+        "-company": "中国移动",
+        "-system": "lte-tdd",
+        "-remark": "2320MHz-2370MHz TD-LTE 中国移动 室内"
+      },
+      {
+        "-start": "2370000000",
+        "-step": "25000",
+        "-stop": "2400000000",
+        "-threshold": "103",
+        "-block": "10",
+        "-remark": "2370MHz-2400MHz"
+      },
+      {
+        "-start": "2500000000",
+        "-step": "25000",
+        "-stop": "2555000000",
+        "-threshold": "103",
+        "-block": "10",
+        "-remark": "2500MHz-2555MHz"
+      },
+      {
+        "-start": "2555000000",
+        "-step": "500000",
+        "-stop": "2575000000",
+        "-threshold": "-3",
+        "-block": "0",
+        "-company": "中国联通",
+        "-system": "lte-tdd",
+        "-remark": "2555MHz-2575MHz TD-LTE 中国联通"
+      },
+      {
+        "-start": "2575000000",
+        "-step": "500000",
+        "-stop": "2635000000",
+        "-threshold": "-3",
+        "-block": "0",
+        "-company": "中国移动",
+        "-system": "lte-tdd",
+        "-remark": "2575MHz-2635MHz TD-LTE 中国移动"
+      },
+      {
+        "-start": "2635000000",
+        "-step": "500000",
+        "-stop": "2655000000",
+        "-threshold": "-3",
+        "-block": "0",
+        "-company": "中国电信",
+        "-system": "lte-tdd",
+        "-remark": "2635MHz-2655MHz TD-LTE 中国电信"
+      },
+      {
+        "-start": "2655000000",
+        "-step": "25000",
+        "-stop": "2690000000",
+        "-threshold": "103",
+        "-block": "10",
+        "-remark": "2655MHz-2690MHz"
+      }
+    ]
+  }
+}

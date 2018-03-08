@@ -1,56 +1,45 @@
 <!-- 总览 -->
 <template>
-    <section class="over_container" :style="{'height':overHeight}">
-        <el-container>
-            <el-header height='30' class='headerTitle'>
-                <span>
-                    <img :src="icon_right_arrow" alt="right icon">
-                    总览
-                </span>
-            </el-header>
-            <el-main class="main_container">
-                <ratioPie :option='ratioPieOption' class="pieOccupy" :setting="{width:'400px',height:'270px'}" ></ratioPie>
-                <bar-graph :valueData='valueData' :keyData='keyData' :width='width' :height='height' :rateCover='rateCover'></bar-graph>
-            </el-main>
-        </el-container>
-        <div class="dot" @mousedown="mouseDown" @mousemove="mousemoving" @mouseup="mouseUp" @mouseout="mouseUp"></div>                                    
-    </section>
+  <section class="over_container">
+    <div class="over_title">
+      <img :src="icon_right_arrow" alt="right icon">
+      <slot name='overview_title'></slot>
+    </div>
+    <div class="main_container">
+      <section v-loading="PieLoading" :style="{width:'380px',height}">
+        <ratio-pie :option='ratioPieOption' :setting="{width:'380px',height}" v-if="Object.keys(ratioPieOption).length"></ratio-pie>
+        <section v-if='pieMoveEmpty' class="box_container">
+          <i class="iconfont icon-box-empty icon_box_empty"></i>
+          <p style="color:#ccc;">网格化频段占用度覆盖率,暂时没有数据～</p>
+        </section>
+      </section>
+      <section v-loading="BarLoading" :style="{width:BarLoading?'380px':width,height}">
+        <bar-graph ref='bar' :currentFreq='currentFreq' :valueData='valueData' :keyData='keyData' :width='width' :height='height' :rateCover='rateCover' v-if="Object.keys(rateCover).length"></bar-graph>
+        <section v-if='barMoveEmpty' class="box_container">
+          <i class="iconfont icon-box-empty icon_box_empty"></i>
+          <p style="color:#ccc;">信号覆盖率,暂时没有数据～</p>
+        </section>
+      </section>
+    </div>
+  </section>
 </template>
 
 <script type="text/ecmascript-6">
 import RatioPie from "components/stationManage/ratioPie.vue"
 import BarGraph from "base/barVariable"
-import * as Global_ from "assets/js/global"
 export default {
-  props: ["ratioPieOption", "rateCover","valueData","keyData"],
+  props: ["ratioPieOption", "rateCover","barMoveEmpty","pieMoveEmpty" , "valueData", "keyData", "PieLoading", "BarLoading","currentFreq"],
   data() {
     return {
-      width: "600px",
-      height: "270px",
-      overHeight:'300px',
-      icon_right_arrow: Global_.right_arrow,
-      isClickDown:false
+      width: "510px",
+      height: "280px",
+      isClickDown: false
     };
   },
-  methods:{
-      mouseDown(e=event) {
-        this.isClickDown = true
-      },
-      mousemoving(e=event) {
-          let nodes = e.target
-          if(!this.isClickDown) return
-        //   console.log('on moving',e.clientY-120)
-          nodes.style.top = `${e.clientY-120}px`
-          this.overHeight = `${e.clientY-130}px`
-          if(e.clientY-120<=210) {
-            nodes.style.top = '210px'
-            this.overHeight = '200px'            
-          }
-      },
-      mouseUp() {
-        //   console.log('mouseUp')
-          this.isClickDown = false
-      }
+  computed: {
+    icon_right_arrow() {
+      return this.$const.right_arrow
+    }
   },
   components: {
     RatioPie,
@@ -59,36 +48,22 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang='less'>
 .over_container {
-  position: relative;
-  min-height: 200px;
-}
-.over_container .main_container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-}
-
-.el-main{
-    padding: 0;
-}
-.dot {
-    width:20px;
-    height: 10px;
-    background-color: #33cdfc;
-    position: absolute;
-    left: 50%;
-    bottom:-5px;
-}
-.over_container {
-  background: #5294d1;
-  border: 1px solid #4fdaff;
-  width: 96%;
-  padding: 10px;
-  overflow: hidden;
-}
-.over_container .headerTitle {
-  color: #4fdaff;
+	position: relative;
+    width: 100%;
+    min-height: 260px;
+    border: 1px solid #4fdaff;
+    padding: 10px;
+    box-sizing: border-box;
+	overflow: hidden;
+    .over_title {
+		color: #4fdaff;
+	}
+	.main_container {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+	}
 }
 </style>

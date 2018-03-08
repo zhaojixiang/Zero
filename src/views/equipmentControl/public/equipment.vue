@@ -11,6 +11,10 @@
 </template>
 
 <style>
+    .legend {
+      color: #FFFFFF !important;
+      line-height: 18px !important;
+    }
     .equipment {
       color: #fff;
     }
@@ -76,7 +80,7 @@
     }
     .map-legend {
       position: absolute;
-      right: 0px;
+      left: 0px;
       top: 0px;
       z-index: 1000;
       width: 120px;

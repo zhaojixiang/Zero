@@ -1,9 +1,11 @@
-export default function(key_data=[],value_data=[]) {
+export default function({key_data=[],series_label_formatter='{b} :\n{d}%  ',tooltip_formatter="{a} <br/>{b} : {c} ({d})",value_data=[],title='',series_name='',color=['#13c3a9', '#e5b639', '#e47d60', '#238fe2', '#adb1b4']}={}) {
   return {
     title : {
-      text: '',
-      x: 30,
-      y: 10,
+      text: title,
+      // x: 140,
+      // y: 10,
+      left:'center',
+      bottom:0,
       textStyle:{
         color: '#56e5ff',
         fontWeight: 'normal',
@@ -12,7 +14,8 @@ export default function(key_data=[],value_data=[]) {
     },
     tooltip : {
       trigger: 'item',
-      formatter: "{a} <br/>{b} : {c} ({d}%)"
+      padding: 5,
+      formatter: tooltip_formatter
     },
     legend: {
       orient: 'vertical',
@@ -22,15 +25,15 @@ export default function(key_data=[],value_data=[]) {
       itemHeight: 14,
       data: key_data,
       textStyle:{
-        color: '#fff'
+        color: '#8F9091'
       }
     },
-    color:['#13c3a9', '#e5b639', '#e47d60', '#238fe2', '#adb1b4'],
+    color:color,
     series : [
       {
-        name: '访问来源',
+        name: series_name,
         type: 'pie',
-        radius : '70%',
+        radius : '60%',
         center: ['60%', '55%'],
         // data:[
         //   {value:25, name:'合法'},
@@ -42,8 +45,8 @@ export default function(key_data=[],value_data=[]) {
         data:value_data,
         label: {
           normal: {
-            formatter: '{b} :\n{c}个 \n {d}%  ',
-            color: '#fff'
+            formatter: series_label_formatter, // '{b} :\n{d}%  '
+            color: '#8F9091'
           }
         },
         itemStyle: {

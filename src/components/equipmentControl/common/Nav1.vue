@@ -1,6 +1,6 @@
 <template>
   <div class="menu-box">
-    <div class="submenu" @click="unfold">
+    <div class="submenu" @click="unfold" v-show="provinceShow">
       <span class="location"></span>
       <span slot="title" id="address" >{{currentLocation.name}}</span>
       <span class="arrow"></span>
@@ -24,9 +24,15 @@
           <el-menu-item index="5" :route="{name:'Num'}" v-show='menuShow'>台站数量与监测设施关系</el-menu-item>
           <el-menu-item index="6" :route="{name:'Worker'}" v-show='menuShow'>工作人员数量与监测设施关系</el-menu-item>
         </div>
-        <span @click="occupy" class="right_occupy" v-show="showTitle">频段占用度变化趋势</span>
-        <span @click.stop="exportList" class='export_right' v-show='!menuShow'>导出列表</span>
+        <!-- 台站显示 -->
+        <!-- <span class="stationShowTop" v-show="stationShowTop">广州是共查询到台站 {{stationNumber[0]}} 个</span> -->
+        <!-- 数据回放 -->
+        <!-- <span class="dataReplayTop" v-show="dataReplayTop">您当前查询的是 {{stationNumber[0]}} 频段的数据</span> -->
+        <span @click.stop="exportList" class='export_right' v-show='!menuShow&&exportListShow'>导出列表</span>
     </el-menu>
+    <div v-show="navBarTitleShow" class="navBarTitle">
+      {{navBarTitle}}
+    </div>
     <div id="fold" v-show="listShow">
       <!-- <div id="trigon"></div> -->
       <div class="city-list">
@@ -87,9 +93,15 @@
     position: absolute;
     text-align: right;
     text-decoration: underline;
-    color:yellow !important;
+    color: #fff !important;
     cursor: pointer;
     bottom: 1em;
+  }
+  .stationShowTop,.dataReplayTop{
+    position: absolute;
+    left: 46%;
+    top: 15px;
+    color: #fff;
   }
   .export_right{
     right: 5em;
@@ -121,7 +133,7 @@
     background: #ebf5fe;
     border:solid 2px #3c78af;
     position: absolute;
-    z-index: 200;
+    z-index: 2000;
     margin-left: 30px;
   }
   .city-list{
@@ -153,6 +165,14 @@
     top: -25px;
     left: 29px;
   }
+  .navBarTitle {
+    width: 100%;
+    position: absolute;
+    top: 70px;
+    text-align: center;
+    font-size: 14px;
+    color: #fff;
+  }
 </style>
 
 <script>
@@ -163,13 +183,38 @@
       return {
         listShow:false,
         cityList:this.$store.state.cityList,
-        province:this.$store.state.province
+        province:this.$store.state.province,
+        stationNumber: []
       }
     },
     props:{
       showTitle: {
-        type: Boolean,        
+        type: Boolean,
         default: false
+      },
+      stationShowTop:{
+        type: Boolean,
+        default: false
+      },
+      navBarTitleShow:{
+        type: Boolean,
+        default: false
+      },
+      navBarTitle:{
+        type:String,
+        default:'',
+      },
+      dataReplayTop:{
+        type: Boolean,
+        default: false
+      },
+      exportListShow:{
+        type: Boolean,
+        default: true
+      },
+      provinceShow:{
+        trpe: Boolean,
+        default: true
       }
     },
     mounted(){
@@ -180,6 +225,15 @@
         this.$store.state.equipment.subMenuShow = true;
       } else {
         this.$store.state.equipment.subMenuShow = false;
+      }
+      // 台站显示页面台站数量
+      if(this.stationShowTop){
+        let params = {
+          cid: this.$const.CID_
+        }
+        this.$api.stationShow.GetCityTotalCount(params).then(res=>{
+          this.stationNumber.push(res.data)
+        })
       }
     },
     methods: {
@@ -200,10 +254,11 @@
         let city = '';
         //选择省
         if(index == -1) {
-          city = {code:this.$store.state.procode,name:this.$store.state.province};
+          city = {code:this.$store.state.procode,name:this.$store.state.province,latitude:23.08,longitude:113.14};
           this.$store.state.locationLevel = 0;
         } else {
           city = this.$store.state.cityData[index];
+          console.log(city,'city');
           city.code = city.value;
           this.$store.state.locationLevel = 1;
         }
@@ -214,9 +269,6 @@
       exportList() {
         this.$emit('export');
       },
-      occupy(){
-        this.$emit('occupy');
-      }
     },
     computed:{
       active:function(){

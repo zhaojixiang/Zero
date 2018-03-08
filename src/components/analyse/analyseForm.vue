@@ -16,7 +16,7 @@
                   v-for="item in options"
                   :key="item.value"
                   :label="item.label"
-                  :value="item.value">
+                  :value="item.label">
                 </el-option>
               </el-select>
             </el-form-item>
@@ -31,8 +31,9 @@
                         v-model="form_data.start_date"
                         :clearable='false'
                         type="date"
-                        size="mini"                            
+                        size="mini"
                         placeholder="选择日期"
+                        value-format="yyyy-MM-dd"
                         format="yyyy年MM月dd日">
                     </el-date-picker>
                 </el-form-item>
@@ -41,10 +42,11 @@
               <el-form-item label-width='65px' label="结束日期:">
                   <el-date-picker
                       v-model="form_data.end_date"
-                      :clearable='false'                            
+                      :clearable='false'
                       type="date"
                       size="mini"
                       placeholder="选择日期"
+                      value-format="yyyy-MM-dd"
                       format="yyyy年MM月dd日">
                   </el-date-picker>
               </el-form-item>
@@ -52,44 +54,43 @@
           </el-row>
         </el-form>
       </el-main>
-      <el-button class="btn" @click="do_analysis" type="primary" size='medium'>执行分析</el-button>      
+      <el-button class="btn" @click="doAnalysis" type="primary" size='medium'>执行分析</el-button>
     </el-container>
   </section>
 </template>
 
 <script type="text/ecmascript-6">
-import * as Global_ from "assets/js/global";
-
 export default {
   props:["options"],
   data() {
     return {
-      icon_right_arrow: Global_.right_arrow,
       form_data: {
-        start_date: "",
-        end_date: "",
-        value: ""
+        start_date: new Date(new Date().getTime()-3.1536e10).Format('yyyy-MM-dd'),
+        end_date: new Date().Format('yyyy-MM-dd'),
+        value: "88MHz-108MHz 广播"
       }
     };
   },
-  methods:{
-    do_analysis() {
-      this.$message({
-        type:'warning',
-        message:'暂时不提供分析功能'
-      })
+  computed: {
+    icon_right_arrow() {
+      return this.$const.right_arrow
     }
   },
-  components: {}
+  methods:{
+    doAnalysis() {
+      sessionStorage.setItem('business',JSON.stringify(this.form_data))
+      this.$emit('Analyse')
+    }
+  }
 };
 </script>
 
-<style>
+<style scoped>
 .out_wrap {
   width: inherit;
 }
 .out_wrap .el-form-item__label {
-  color:#bcddf7;
+  color:#818181!important;
 }
 .out_wrap .el-form-item__label {
   font-size: 10px !important;
@@ -100,8 +101,8 @@ export default {
   border: 1px solid #4fdaff;
   padding: 0.5em 0 0 0;
 }
-.out_wrap .container .el-main {
-  padding: 0;
+.out_wrap .container,.out_wrap .el-main {
+  padding: 10px 0 0 0;
   margin-left: 0;
   margin-right: 0;
 }
@@ -110,8 +111,8 @@ export default {
   display: flex;
   justify-content: space-between;
 }
-.out_wrap .el-date-editor.el-input, .el-date-editor.el-input__inner{
-  width: 150px;
+.out_wrap .el-date-editor.el-input, .el-date-editor.el-input__inner,.el-input--mini,.el-input--suffix{
+  /*width: 150px;*/
 }
 .out_wrap .container .btn{
   width: 100%;

@@ -1,12 +1,13 @@
 <!--相关分析-->
 <template>
-  <el-container class='RAcontainer'>
-    <el-header height='30' class='headerTitle'>
+  <div class='RAcontainer'>
+    <div class='headerTitle'>
         <span>
             <img :src="icon_right_arrow" alt="right icon">
             相关分析
         </span>
-    </el-header>
+    </div>
+    <span @click="minus" class="minus"><i class="el-icon-minus i-minus"></i></span>
     <el-main class='cover_default1'>
         <el-form :inline="true" :model="form_data">
             <section>
@@ -32,47 +33,36 @@
                     </el-col>
                 </el-row>
             </section>
-            <span class="headerTitle timeTitle">
+            <span class="timeTitle" style="margin-bottom:10px;display:block;font-size:10px">
                 时间范围
             </span >
-            <section class="relationTime">
-                <el-form-item label="开始日期 :" style="margin:0;padding:0;">
-                    <el-date-picker
-                        v-model="form_data.start_date"
-                        :clearable='false'
-                        type="date"
-                        size="mini"
-                        placeholder="选择日期"
-                        format="yyyy年MM月dd日">
-                    </el-date-picker>
-                </el-form-item>
-                <el-form-item label="结束日期 :" style="margin:0;padding:0;">
-                    <el-date-picker
-                        v-model="form_data.end_date"
-                        :clearable='false'
-                        type="date"
-                        size="mini"
-                        placeholder="选择日期"
-                        format="yyyy年MM月dd日">
-                    </el-date-picker>
-                </el-form-item>
-            </section>
+            <el-form-item class="relationTime">
+              <div class="block">
+                <!-- <span class="demonstration">默认</span> -->
+                <el-date-picker
+                  v-model="form_data.daterange"
+                  type="daterange"
+                  size="mini"
+                  range-separator="至"
+                  start-placeholder="开始日期"
+                  end-placeholder="结束日期">
+                </el-date-picker>
+              </div>
+
+            </el-form-item>
         </el-form>
     </el-main>
     <el-button @click="do_analysis" type="primary" size='medium'>执行分析</el-button>
-  </el-container>
+  </div>
 </template>
 <script>
-import * as Global_ from 'assets/js/global'
-
 export default {
   data() {
     return {
-      icon_right_arrow: Global_.right_arrow,
       form_data:{
         isShowStation:true,
-        start_date:'',
         value:'88-108MHz FM 广播',
+        daterange: '',
         options:[
             {
             value: '选项1',
@@ -90,48 +80,64 @@ export default {
             value: '选项5',
             label: '北京烤鸭'
             }
-        ],
-        end_date:''
+        ]
       }
     };
+  },
+  computed: {
+      icon_right_arrow() {
+          return this.$const.right_arrow
+      }
   },
   methods:{
       do_analysis() {
         //   console.log(this.form_data)
         this.$emit('do_analysis',this.form_data)
+      },
+      minus(){
+        this.$emit("minus")
       }
   }
 };
 </script>
 <style>
+.RAcontainer {
+  width: 450px;
+  height: 270px;
+  border: 1px solid #4fdaff;
+  background-color: #fff;
+}
+.RAcontainer .minus{
+  position: absolute;
+  cursor: pointer;
+  font-size: 16px;
+  top: 8px;
+  right: 15px;
+}
 .RAcontainer .headerTitle {
-  color: #4fdaff;
+  color: #357095;
   font-size: 14px;
-  display: flex;
-  justify-content: space-between;
-  height:30px;
-  line-height: 30px;
+  height:40px;
+  line-height: 40px;
+  padding: 0 10px;
+  border-bottom: solid 1px #c6c6c6;
 }
 .RAcontainer .cover_default1 {
-  color: #fff;
+  color: #6a6a6a;
   /* position:relative; */
-  margin-left: 36px;
+  margin-left: 32px;
+  margin-right: 10px;
 }
 .RAcontainer .el-main{
     padding: 0;
 }
 .RAcontainer .timeTitle{
-    /* margin: 5px 10px; */
-}
-.RAcontainer {
-  height: 260px;
-  overflow: hidden;
-  border: 1px solid #4fdaff;
-  margin: 0.5em 0 0.5em 0.5em;
-  padding: 0.5em 0 0 0;
+  font-size: 12px;
+  color: #6a6a6a;
+  padding: 0px;
 }
 .RAcontainer .el-form-item__label{
-    color:#fff;
+    color: #6a6a6a;
 }
 .RAcontainer .clear_bottom_20{
     margin-bottom: 0;
@@ -141,33 +147,31 @@ export default {
   text-align: left;
 }
 .RAcontainer .el-button--medium{
-    width: 100%;
-    margin: 0;
-    border-radius: 0;
+    width: 40%;
+    margin-left: 30%;
+    /* margin-bottom: 5px; */
     border:1px solid #33ccff;
-    /* background-color: #2b73a2; */
+    background: #64a6d1;
     height: 39px;
     font-size: 18px;
-    /* position: absolute; */
-    /* bottom: 0; */
 }
 .el-header{
   padding: 0px;
   margin-left: 14px;
 }
-.RAcontainer .el-date-editor.el-input, .el-date-editor.el-input__inner{
+/* .RAcontainer .el-date-editor.el-input, .el-date-editor.el-input__inner{
     width: 150px;
-}
+} */
 .RAcontainer .el-input__inner{
-    background-color: #3c78af;
-    color: #fff;
+    /* background-color: #ebebeb; */
+    color: #6a6a6a;
 }
 .RAcontainer .el-form-item__label{
     font-size: 10px;
 }
-.RAcontainer .el-form--inline .el-form-item__content{
-    width:159px;
-}
+/* .RAcontainer .el-form--inline .el-form-item__content{
+    width:150px;
+} */
 .el-form--inline .el-form-item{
   margin-bottom: 10px;
 }
@@ -178,8 +182,9 @@ export default {
   padding: 0px;
 }
 .RAcontainer .relationTime{
-  display: flex;
-  justify-content: space-between;
+  margin-bottom: 15px;
+  /* display: flex;
+  justify-content: space-between; */
 
 }
 </style>

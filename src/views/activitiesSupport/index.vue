@@ -1,213 +1,183 @@
 <!-- 重大活动辅助 -->
 <template>
-    <section class="activities">
-        <nav1 @export='exportList'></nav1>
-        <section style="width:98%; margin:0 auto;">
-
-
-        <el-row :gutter="20" class="clear_bottom_margin20" style="margin-top:10px">
-            <el-col :span="7">
-              <section class="leftContent">
-                <div>
-                    <div height='30' class='headerTitle'>
-                        <span>
+<section class="activities">
+  <nav1 @export='exportList'></nav1>
+  <section style="width:98%; margin:0 auto;">
+    <el-row :gutter="20" class="clear_bottom_margin20" style="margin-top:10px">
+      <el-col :span="7">
+        <section class="leftContent">
+          <div>
+            <div height='30' class='headerTitle'>
+              <span>
                             <img :src="icon_right_arrow" alt="right icon">
                             活动保障</span>
-                        <span class='addNew' @click="addNewAct">+新增</span>
-                    </div>
-                    <el-main class='cover_default zoneContainer' style="height:130px;">
-                        <activities :data='activitiesData' @deleteItem='deleteAct'></activities>
-                    </el-main>
-                </div>
-                <div>
-                    <div height='30' class='headerTitle'>
-                        <span><img :src="icon_right_arrow" alt="right icon">
+              <span class='addNew' @click="addNewAct">+新增</span>
+            </div>
+            <el-main class='cover_default zoneContainer' style="height:130px;">
+              <activities :data='activitiesData' @deleteItem='deleteAct'></activities>
+            </el-main>
+          </div>
+          <div>
+            <div height='30' class='headerTitle'>
+              <span><img :src="icon_right_arrow" alt="right icon">
                         区域选择</span>
-                        <span class='addNew' @click="addNewZone">+新增</span>
-                    </div>
-                    <el-main class='cover_default zoneContainer' style="height:130px;">
-                        <zones-choice :isClick='true' :zonesData='zonesData' @deleteItem='deleteZone' @edit_rate='edit_rate' @edit_part='edit_part'></zones-choice>
-                    </el-main>
-                </div>
-                <div>
-                    <div height='30' class='headerTitle'>
-                        <span>
+              <span class='addNew' @click="addNewZone">+新增</span>
+            </div>
+            <el-main class='cover_default zoneContainer' style="height:130px;">
+              <zones-choice :isClick='true' :zonesData='zonesData' @deleteItem='deleteZone' @edit_rate='edit_rate' @edit_part='edit_part'></zones-choice>
+            </el-main>
+          </div>
+          <div>
+            <div height='30' class='headerTitle'>
+              <span>
                           <img :src="icon_right_arrow" alt="right icon">
                         异常信号提取
                         </span>
-                    </div>
-                    <!-- <div class='main-title'> -->
-                    <el-row class='main-title'>
-                        <el-col :span="8" class='title_item'>频率(MHz)</el-col>
-                        <el-col :span="8" class='title_item'>带宽(KHz)</el-col>
-                        <el-col :span="8" class='title_item'>功率(dPμV)</el-col>
-                    </el-row>
-                    <el-main class='cover_default zoneContainer' style="height: 130px;margin-bottom:10px;">
-                        <error-signl :errorInfo='errorInfo'></error-signl>
-                    </el-main>
-                </div>
-              </section>
-            </el-col>
-            <el-col :span="10">
-                <leaflet style='height:552px;'></leaflet>
-            </el-col>
-            <el-col :span="7">
-              <section class="rightContent">
-                <div class='right_container'>
-                    <div class='headerTitle' style="height:40px;line-height:40px;padding: 0 10px 0 20px;">
-                        <span>
+            </div>
+            <!-- <div class='main-title'> -->
+            <el-row class='main-title'>
+              <el-col :span="8" class='title_item'>频率(MHz)</el-col>
+              <el-col :span="8" class='title_item'>带宽(KHz)</el-col>
+              <el-col :span="8" class='title_item'>功率(dPμV)</el-col>
+            </el-row>
+            <el-main class='cover_default zoneContainer' style="height: 130px;margin-bottom:10px;">
+              <error-signl :errorInfo='errorInfo'></error-signl>
+            </el-main>
+          </div>
+        </section>
+      </el-col>
+      <el-col :span="10">
+        <leaflet style='height:552px;'></leaflet>
+      </el-col>
+      <el-col :span="7">
+        <section class="rightContent">
+          <div class='right_container'>
+            <div class='headerTitle' style="height:40px;line-height:40px;padding: 0 10px 0 20px;">
+              <span>
                             <img :src="icon_right_arrow" alt="right icon">
                         频率覆盖率及频段占用度
                         </span>
-                        <span >
+              <span>
                           <el-radio-group v-model="radio">
                             <el-radio :label="1">活动前最近30天</el-radio>
                             <el-radio :label="2" style='margin-left:10px;'>活动期间</el-radio>
                           </el-radio-group>
                         </span>
-                    </div>
-                    <div class="doubleBar">
-                        <bar-graph :width='width' :height='height' :rateCover='rateCover'></bar-graph>
-                        <bar-graph :width='width' :height='height' :rateCover='ratePartCover'></bar-graph>
-                    </div>
-                </div>
-                <div style='position:relative;top:-10px;height:150px;'>
-                    <div height='30' class='headerTitle' style="margin-left:21px;">
-                        <span>信号提取</span>
-                    </div>
-                    <!-- <div class='main-title'> -->
-                    <el-row class='main-title'>
-                        <el-col :span="8" class='title_item'>频率(MHz)</el-col>
-                        <el-col :span="8" class='title_item'>带宽(KHz)</el-col>
-                        <el-col :span="8" class='title_item'>功率(dPμV)</el-col>
-                    </el-row>
-                    <el-main class="zoneContainer" style="padding:0 20px;height:80px;">
-                        <signl-get :info='infoData'></signl-get>
-                    </el-main>
-                </div>
-              </section>
-            </el-col>
-        </el-row>
-        <div class='clear_bottom_margin20 clear_bottom'>
-              <span class="bottom_right" @click='openHours'>
+            </div>
+            <div class="doubleBar">
+              <bar-graph :width='width' :height='height' :rateCover='rateCover'></bar-graph>
+              <bar-graph :width='width' :height='height' :rateCover='ratePartCover'></bar-graph>
+            </div>
+          </div>
+          <div style='position:relative;top:-10px;height:150px;'>
+            <div height='30' class='headerTitle' style="margin-left:21px;">
+              <span>信号提取</span>
+            </div>
+            <!-- <div class='main-title'> -->
+            <el-row class='main-title'>
+              <el-col :span="8" class='title_item'>频率(MHz)</el-col>
+              <el-col :span="8" class='title_item'>带宽(KHz)</el-col>
+              <el-col :span="8" class='title_item'>功率(dPμV)</el-col>
+            </el-row>
+            <el-main class="zoneContainer" style="padding:0 20px;height:80px;">
+              <signl-get :info='infoData'></signl-get>
+            </el-main>
+          </div>
+        </section>
+      </el-col>
+    </el-row>
+    <div class='clear_bottom_margin20 clear_bottom'>
+      <span class="bottom_right" @click='openHours'>
                   {{openHour?'收起小时用度':'展开小时用度'}}
                   <i :class="[openHour?'el-icon-arrow-up':'el-icon-arrow-down','el-icon--right']"></i>
               </span>
-              <span class="bottomTitle">
+      <span class="bottomTitle">
                   <img :src="icon_right_arrow" alt="right icon">
               信道占用度
               </span>
-              <bar-graph :rateCover='transactionBarData' :width='width' height='250px'></bar-graph>
-              <highcharts height='450px' :data='highchartData' v-if='openHour'></highcharts>
-        </div>
-        <!-- 弹框效果 -->
-        <el-dialog
-          :title='edit_addNew.newTitle'
-          :visible.sync="dialog_show"
-          :width="dialog_width"
-          :close-on-click-modal='false'
-          :center='true'
-          @close='dialog_close'
-          >
-          <!-- 新增活动 -->
-          <section v-if="edit_addNew.addNewAct_" class="dialog_class" :style="{marginLeft:edit_addNew.leftMargin}">
-            <el-form :model="form_Act_data" :inline="true">
-                <el-form-item :label="form_Act_data.label_name">
-                  <el-input v-model="form_Act_data.actName"></el-input>
-                </el-form-item>
-                <el-form-item label="开始时间">
-                  <el-date-picker
-                    v-model="form_Act_data.start_time"
-                    type="date"
-                    placeholder="选择日期"
-                    format="yyyy 年 MM 月 dd 日">
-                  </el-date-picker>
-                </el-form-item>
-                <el-form-item label="结束时间">
-                  <el-date-picker
-                    v-model="form_Act_data.end_time"
-                    type="date"
-                    placeholder="选择日期"
-                    format="yyyy 年 MM 月 dd 日">
-                  </el-date-picker>
-                </el-form-item>
-            </el-form>
-          </section>
-          <!-- 编辑频率 -->
-          <section v-else-if="edit_addNew.edit_rate"  class="dialog_class">
-            <list-manage :data='rate_data' :listManage='edit_addNew.list_manage' @dialog_deleteItem='dialog_deleteItem'></list-manage>
-            <el-pagination
-                style="textAlign:center;"
-                small
-                layout="prev, pager, next"
-                :total="rate_data.length">
-            </el-pagination>
-          </section>
-          <!-- 编辑频段 -->
-          <section v-else-if="edit_addNew.edit_part"  class="dialog_class">
-            <list-manage :data='part_data' :listManage='edit_addNew.list_manage' @dialog_deleteItem='dialog_deleteItem'></list-manage>
-            <el-pagination
-                style="textAlign:center;"
-                small
-                layout="prev, pager, next"
-                :total="part_data.length">
-            </el-pagination>
-          </section>
-          <!-- 区域 -->
-          <section v-else class="dialog_class">
-            zone
-          </section>
-          <!-- 内联 弹框  -->
-          <el-dialog
-            width="30%"
-            :title="inner_dialog.inner_dialog_title"
-            :visible.sync="inner_dialog.innerVisible"
-            :center='true'
-            append-to-body>
-            <!-- 内联弹框 频率新增 -->
-            <section style="marginLeft:70px;" v-if="edit_addNew.edit_rate">
-              <el-form :model="inner_dialog" :inline='true'>
-                <el-form-item label="中心频点(MHz)">
-                <el-input v-model="inner_dialog.inner_center_rate"></el-input>
-                </el-form-item>
-                <el-form-item label="信号带宽(KHz)">
-                  <el-input v-model="inner_dialog.inner_signal_part"></el-input>
-                </el-form-item>
-              </el-form>
-            </section>
-            <!-- 内联弹框 频段新增 -->
-            <section v-else  class="inner_dialog_part">
-              <el-form :model="inner_dialog" :inline='true'>
-                <el-form-item label="开始频率(MHz)">
-                  <el-input v-model="inner_dialog.inner_center_part"></el-input>
-                </el-form-item>
-                <el-form-item label="结束频率(MHz)">
-                  <el-input v-model="inner_dialog.inner_signal_part"></el-input>
-                </el-form-item>
-                <el-form-item label="频率步进(KHz)">
-                  <el-input v-model="inner_dialog.inner_center_part"></el-input>
-                </el-form-item>
-                <el-form-item label="信号门限(dB)">
-                  <el-input v-model="inner_dialog.inner_signal_part"></el-input>
-                </el-form-item>
-                <el-radio-group v-model="inner_dialog.isAuto">
-                  <el-radio :label="1">自动门限</el-radio>
-                  <el-radio :label="2">直线门限</el-radio>
-                </el-radio-group>
-              </el-form>
-            </section>
-            <span slot="footer" class="dialog-footer">
+      <bar-graph :rateCover='transactionBarData' :width='width' height='250px'></bar-graph>
+      <highcharts height='450px' :data='highchartData' v-if='openHour'></highcharts>
+    </div>
+    <!-- 弹框效果 -->
+    <el-dialog :title='edit_addNew.newTitle' :visible.sync="dialog_show" :width="dialog_width" :close-on-click-modal='false' :center='true' @close='dialog_close'>
+      <!-- 新增活动 -->
+      <section v-if="edit_addNew.addNewAct_" class="dialog_class" :style="{marginLeft:edit_addNew.leftMargin}">
+        <el-form :model="form_Act_data" :inline="true">
+          <el-form-item :label="form_Act_data.label_name">
+            <el-input v-model="form_Act_data.actName"></el-input>
+          </el-form-item>
+          <el-form-item label="开始时间">
+            <el-date-picker v-model="form_Act_data.start_time" type="date" placeholder="选择日期" format="yyyy 年 MM 月 dd 日">
+            </el-date-picker>
+          </el-form-item>
+          <el-form-item label="结束时间">
+            <el-date-picker v-model="form_Act_data.end_time" type="date" placeholder="选择日期" format="yyyy 年 MM 月 dd 日">
+            </el-date-picker>
+          </el-form-item>
+        </el-form>
+      </section>
+      <!-- 编辑频率 -->
+      <section v-else-if="edit_addNew.edit_rate" class="dialog_class">
+        <list-manage :data='rate_data' :listManage='edit_addNew.list_manage' @dialog_deleteItem='dialog_deleteItem'></list-manage>
+        <el-pagination style="textAlign:center;" small layout="prev, pager, next" :total="rate_data.length">
+        </el-pagination>
+      </section>
+      <!-- 编辑频段 -->
+      <section v-else-if="edit_addNew.edit_part" class="dialog_class">
+        <list-manage :data='part_data' :listManage='edit_addNew.list_manage' @dialog_deleteItem='dialog_deleteItem'></list-manage>
+        <el-pagination style="textAlign:center;" small layout="prev, pager, next" :total="part_data.length">
+        </el-pagination>
+      </section>
+      <!-- 区域 -->
+      <section v-else class="dialog_class">
+        zone
+      </section>
+      <!-- 内联 弹框  -->
+      <el-dialog width="30%" :title="inner_dialog.inner_dialog_title" :visible.sync="inner_dialog.innerVisible" :center='true' append-to-body>
+        <!-- 内联弹框 频率新增 -->
+        <section style="marginLeft:70px;" v-if="edit_addNew.edit_rate">
+          <el-form :model="inner_dialog" :inline='true'>
+            <el-form-item label="中心频点(MHz)">
+              <el-input v-model="inner_dialog.inner_center_rate"></el-input>
+            </el-form-item>
+            <el-form-item label="信号带宽(KHz)">
+              <el-input v-model="inner_dialog.inner_signal_part"></el-input>
+            </el-form-item>
+          </el-form>
+        </section>
+        <!-- 内联弹框 频段新增 -->
+        <section v-else class="inner_dialog_part">
+          <el-form :model="inner_dialog" :inline='true'>
+            <el-form-item label="开始频率(MHz)">
+              <el-input v-model="inner_dialog.inner_center_part"></el-input>
+            </el-form-item>
+            <el-form-item label="结束频率(MHz)">
+              <el-input v-model="inner_dialog.inner_signal_part"></el-input>
+            </el-form-item>
+            <el-form-item label="频率步进(KHz)">
+              <el-input v-model="inner_dialog.inner_center_part"></el-input>
+            </el-form-item>
+            <el-form-item label="信号门限(dB)">
+              <el-input v-model="inner_dialog.inner_signal_part"></el-input>
+            </el-form-item>
+            <el-radio-group v-model="inner_dialog.isAuto">
+              <el-radio :label="1">自动门限</el-radio>
+              <el-radio :label="2">直线门限</el-radio>
+            </el-radio-group>
+          </el-form>
+        </section>
+        <span slot="footer" class="dialog-footer">
               <el-button @click="inner_dialog_click_N">取 消</el-button>
               <el-button type="primary" @click="inner_dialog_click_Y">确 认</el-button>
             </span>
-          </el-dialog>
-          <span slot="footer" class="dialog-footer">
+      </el-dialog>
+      <span slot="footer" class="dialog-footer">
             <el-button @click="dialog_click_N">{{edit_addNew.edit?'关 闭':'取 消'}}</el-button>
             <el-button type="primary" @click="dialog_click_Y">{{edit_addNew.edit?'新 增':'确 认'}}</el-button>
           </span>
-        </el-dialog>
-      </section>
-    </section>
+    </el-dialog>
+  </section>
+</section>
 </template>
 <script>
 import nav1 from "components/equipmentControl/common/Nav1";
@@ -221,10 +191,16 @@ import Highcharts from "base/highCharts";
 import ListManage from "views/activitiesSupport/listManage";
 import normalizeBarOption from "assets/js/chartOptions/barOption";
 import highchartOption from "assets/js/chartOptions/highchartOption";
-import { menuShowMixin } from "assets/js/mixin";
-import * as Global_ from "assets/js/global";
+import {
+  menuShowMixin
+} from "assets/js/mixin";
 export default {
   mixins: [menuShowMixin],
+  computed: {
+    icon_right_arrow() {
+      return this.$const.right_arrow
+    }
+  },
   data() {
     return {
       openHour: false,
@@ -248,10 +224,9 @@ export default {
         innerVisible: false,
         inner_center_rate: "",
         inner_signal_part: "",
-        isAuto:1
+        isAuto: 1
       },
       dialog_show: false,
-      icon_right_arrow: Global_.right_arrow,
       radio: 1,
       width: "100%",
       dialog_width: "30%",
@@ -264,8 +239,7 @@ export default {
       infoData: [],
       rateCover: {},
       ratePartCover: {},
-      rate_data: [
-        {
+      rate_data: [{
           start: 80,
           end: 108,
           step: 200,
@@ -314,7 +288,7 @@ export default {
           door: 69,
           option: "delete"
         },
-          {
+        {
           start: 80,
           end: 108,
           step: 200,
@@ -328,7 +302,7 @@ export default {
           door: 69,
           option: "delete"
         },
-          {
+        {
           start: 80,
           end: 108,
           step: 200,
@@ -343,8 +317,7 @@ export default {
           option: "delete"
         }
       ],
-      part_data: [
-        {
+      part_data: [{
           start: 80,
           end: 108,
           step: 200,
@@ -393,7 +366,7 @@ export default {
           door: 69,
           option: "delete"
         },
-          {
+        {
           start: 80,
           end: 108,
           step: 200,
@@ -407,7 +380,7 @@ export default {
           door: 69,
           option: "delete"
         },
-          {
+        {
           start: 80,
           end: 108,
           step: 200,
@@ -515,11 +488,11 @@ export default {
     // 删除活动列表某一项
     deleteAct(item) {
       this.$confirm("你是否已经确定要删除?", "提示", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
-        type: "warning",
-        center: true
-      })
+          confirmButtonText: "确定",
+          cancelButtonText: "取消",
+          type: "warning",
+          center: true
+        })
         .then(() => {
           this.$message({
             type: "success",
@@ -536,11 +509,11 @@ export default {
     // 删除区域列表某一项
     deleteZone(item) {
       this.$confirm("此操作将永久删除该文件, 是否继续?", "提示", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
-        type: "warning",
-        center: true
-      })
+          confirmButtonText: "确定",
+          cancelButtonText: "取消",
+          type: "warning",
+          center: true
+        })
         .then(() => {
           this.$message({
             type: "success",
@@ -589,7 +562,7 @@ export default {
             desc: item.name,
             date: item.date,
             delete: true,
-            mark:'2'
+            mark: '2'
           });
         });
       });
@@ -602,7 +575,7 @@ export default {
             desc: item.name,
             showEdit: item.showEdit,
             delete: true,
-            mark:'2'
+            mark: '2'
           });
         });
       });
@@ -616,7 +589,7 @@ export default {
             date: item.bandWidth,
             delete: false,
             power: item.power,
-            mark:'3'
+            mark: '3'
           });
         });
       });
@@ -630,7 +603,7 @@ export default {
             date: item.bandWidth,
             delete: false,
             power: item.power,
-            mark:'3'
+            mark: '3'
           });
         });
       });
@@ -711,9 +684,11 @@ export default {
 /* .el-row {
   margin-bottom: 20px;
 } */
+
 .activities .clear_bottom_margin20 {
   margin-bottom: 0;
 }
+
 .activities .clear_bottom {
   position: relative;
   margin-top: 10px;
@@ -721,15 +696,18 @@ export default {
   /* margin-bottom: 10px; */
   /* padding-bottom: 10px; */
   border: 1px solid #4fdaff;
-  background-color: rgba(0,0,0,0.2);
+  background-color: rgba(0, 0, 0, 0.2);
 }
+
 .activities .el-col {
   border-radius: 4px;
 }
+
 .activities .row-bg {
   padding: 10px 0;
   background-color: #f9fafc;
 }
+
 .activities .headerTitle {
   color: #4fdaff;
   display: flex;
@@ -739,45 +717,54 @@ export default {
   justify-content: space-between;
   padding: 0 10px 0 20px;
 }
+
 .activities .addNew {
   font-size: 12px;
   color: yellow;
   cursor: pointer;
   padding-right: 17px;
 }
+
 .activities .addNew:hover {
   animation: myfirst 1s linear;
 }
-.activities .leftContent{
+
+.activities .leftContent {
   height: 550px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   border: 1px solid #4fdaff;
-  background-color: rgba(0,0,0,0.2);
+  background-color: rgba(0, 0, 0, 0.2);
 }
+
 .activities .zoneContainer {
   /* height: 15em; */
   overflow: auto;
   /* margin: 0.5em 0 0.5em 0.5em; */
   /* padding: 0.5em 0 0 0; */
 }
-.activities .rightContent{
+
+.activities .rightContent {
   height: 550px;
   border: 1px solid #4fdaff;
-  background-color: rgba(0,0,0,0.2);
+  background-color: rgba(0, 0, 0, 0.2);
 }
+
 .activities .right_container {
   /* margin: 0.5em 0 0 0.5em; */
   /* padding: 0.5em 0 0 0; */
 }
+
 .activities .right_main_top {
   /* top: -39px;
   position: relative; */
 }
+
 .activities .cover_default {
   padding: 0 1em;
 }
+
 .activities .main-title {
   /* width: 100%; */
   /* display: flex; */
@@ -788,19 +775,23 @@ export default {
   padding-left: 4px;
   padding-bottom: 5px;
 }
+
 .activities .title_item {
   /* width: 30.33%; */
   text-align: center;
 
 }
-.activities .doubleBar{
+
+.activities .doubleBar {
   width: 90%;
   margin-left: 36px;
 }
+
 .activities .right_bottom_list {
   height: 15em;
   overflow: hidden;
 }
+
 .activities .clear_bottom_margin20 .bottom_right {
   position: absolute;
   right: 30px;
@@ -812,7 +803,8 @@ export default {
   height: 25px;
   line-height: 25px;
 }
-.activities .bottomTitle{
+
+.activities .bottomTitle {
   color: #4fdaff;
   font-size: 14px;
   position: absolute;
@@ -820,6 +812,7 @@ export default {
   left: 20px;
 
 }
+
 .activities .el-message-box,
 .activities .el-dialog,
 .activities .el-dialog--center {
@@ -827,50 +820,64 @@ export default {
   width: 300px;
   border: none;
 }
+
 .activities .el-message-box--center {
   padding-bottom: 20px;
 }
+
 .activities .el-button--primary {
   background-color: #fff;
   color: #409eff;
 }
+
 .activities .el-message-box__content,
 .activities .el-dialog__title,
 .activities .el-form-item__label {
   color: #fff;
 }
+
 .activities .el-message-box__header,
 .activities .el-dialog__header {
   border-bottom: 1px solid #fff;
 }
+
 .activities .el-message-box--center .el-message-box__header {
   padding-top: 20px;
 }
+
 .activities .el-message-box__headerbtn .el-message-box__close,
-.activities .el-message-box__title,.activities .el-radio,.activities .el-radio__input.is-checked+.el-radio__label,
+.activities .el-message-box__title,
+.activities .el-radio,
+.activities .el-radio__input.is-checked+.el-radio__label,
 .activities .el-dialog__headerbtn .el-dialog__close {
   color: #fff;
   font-size: 10px;
 }
-.activities .el-radio__label{
+
+.activities .el-radio__label {
   font-size: 10px;
   padding-left: 5px;
 }
+
 .activities .dialog_class {
   display: flex;
   flex-direction: column;
   justify-content: left;
   /* margin-left: 70px; */
 }
-.activities .inner_dialog_part .el-form--inline .el-form-item{
+
+.activities .inner_dialog_part .el-form--inline .el-form-item {
   width: 200px;
 }
-.activities .inner_dialog_part .el-form--inline .el-form-item__content{
+
+.activities .inner_dialog_part .el-form--inline .el-form-item__content {
   width: 90px;
 }
+
 ::-webkit-scrollbar {
   display: none;
 }
+
 @keyframes myfirst {
   from {
     transform: scale(1);

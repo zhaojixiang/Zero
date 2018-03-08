@@ -6,6 +6,8 @@
             <img :src="icon_right_arrow" alt="right icon">
             成都广播电台在10月1日-10月30日的38.5MHz信道占用度和功率变化趋势
             </span>
+          <span class="minus" @click="minus"><i class="el-icon-minus i-minus"></i></span>
+
         </div>
         <div>
             <spectra :option="spectraBarOption" :setting="{width:'100%',height:'250px'}"/>
@@ -13,19 +15,23 @@
     </div>
 </template>
 <script>
-import * as Global_ from 'assets/js/global'
 import Spectra from "components/stationManage/spectraBar"
 
 export default {
   props:['spectraBarOption'],
-  data() {
-      return {
-          icon_right_arrow:Global_.right_arrow
+  computed: {
+      icon_right_arrow() {
+          return this.$const.right_arrow
       }
   },
   components:{
       Spectra
-  }
+  },
+  methods:{
+    minus(){
+      this.$emit('minus');
+    }
+  },
 }
 </script>
 <style>
@@ -40,8 +46,6 @@ export default {
   height: 300px;
   overflow: hidden;
   border: 1px solid #4fdaff;
-  background: rgba(0, 0, 0, 0.2);
-  /* margin: 0.5em 0 .5em .5em; */
-  margin: 10px;
+  background: #FEFEFE;
 }
 </style>

@@ -27,7 +27,20 @@ export default function ( {title='',series_data=[],xAxis_data=[],title_offset='c
                 "Sep",
                 "Oct",
                 "Nov",
-                "Dec"
+                "Dec",
+                "Jan",
+                "Feb",
+                "Mar",
+                "Apr",
+                "May",
+                "Jun",
+                "Jul",
+                "Aug",
+                "Sep",
+                "Oct",
+                "Nov",
+                "Dec",
+                'dec'
             ],
             opposite: true
         },

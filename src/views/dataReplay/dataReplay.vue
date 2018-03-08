@@ -1,5 +1,5 @@
 <template>
-  <div class="main">
+  <div class="dataReplay">
     <!--导航栏-->
     <nav1/>
     <div class="content">
@@ -7,7 +7,9 @@
         <!-- 表单 -->
         <inquire class="inquire"/>
         <!-- 分页 -->
-        <paging class="paging1" :data="pagingdata" :three="three"/>
+        <paging class="paging1" :pagingTitle="pagingTitle" :columns='3' :pagingdata="pagingdata">
+          <span slot='zjx' class="pagingTab" @click="pagingTab1">{{pagingTab}}</span>
+        </paging>
       </div>
       <div class="right">
         <!-- 地图 -->
@@ -26,40 +28,49 @@
   </div>
 </template>
 <style>
-  .main{
+  .dataReplay{
     color: #f4f5f5;
+    padding-bottom: 10px;
   }
-  .main .content{
-    width: 96%;
-    margin: 0 auto;
-    margin-top: 20px;
-    padding-bottom: 20px;
+  .dataReplay .content{
+    width: 98%;
+    margin: 10px auto 0px;
     display: flex;
     justify-content: space-between;
   }
-  .main .left{
+  .dataReplay .left{
     width: 35%;
     height: 837px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
-  .main .inquire{
+  .dataReplay .inquire{
     background: rgba(0,0,0,0.2);
     border: 1px solid #3388ff;
     /*margin-bottom: 20px;*/
   }
-  .main .paging1{
+  .dataReplay .paging1{
     background: rgba(0,0,0,0.2);
     border: 1px solid #3388ff;
     height: 593px;
+    position: relative;
   }
-  .main .content .right{
-    width: 63%;
+  .pagingTab{
+    position: absolute;
+    top: 15px;
+    right: 10px;
+    font-size: 12px;
+    color: #fdff38;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  .dataReplay .content .right{
+    width: 64%;
     height: 837px;
     position: relative;
   }
-  .main .right .line{
+  .dataReplay .right .line{
     width: 600px;
     height: 400px;
     background: #293855;
@@ -69,32 +80,32 @@
     left: 18%;
     z-index: 2000;
   }
-  .main .right .line h2{
+  .dataReplay .right .line h2{
     font-weight: normal;
     height: 45px;
     line-height: 45px;
     text-align: center;
     margin: 0px;
   }
-  .main .right .line p,.right .line h2{
+  .dataReplay .right .line p,.right .line h2{
     background: #5294d1;
     border-bottom: solid 1px #fff;
   }
-  .main .right .line p{
+  .dataReplay .right .line p{
     height: 40px;
     line-height: 40px;
     text-indent: 20px;
   }
-  .main .right .line p span:nth-of-type(1){
+  .dataReplay .right .line p span:nth-of-type(1){
     margin-right: 40px;
   }
-  .main .right .line i{
+  .dataReplay .right .line i{
     position:absolute;
     right: 10px;
     top: 10px;
     cursor: pointer;
   }
-  .main .right{
+  .dataReplay .right{
     background: #283858;
     height: 837px;
     width: 900px;
@@ -112,13 +123,13 @@
     border: none;
     border-radius: 0px;
   }
-  .main .right .table{
+  .dataReplay .right .table{
     position: absolute;
     top: 17px;
     left: 62px;
     z-index: 1900;
   }
-  .main .right .table img{
+  .dataReplay .right .table img{
     width: 16px;
     height: 16px;
     position: relative;
@@ -147,7 +158,9 @@
         three: true,
         markerData: [],
         replayLineOption: {},
-        pagingdata:[]
+        pagingdata:[],
+        pagingTitle: '移动站列表',
+        pagingTab: '固定站列表'
       }
     },
     mixins: [menuShowMixin],
@@ -163,9 +176,14 @@
 //      加载折线图
       this.replayLineOption=getReplayLineOption();
 //      分页
-        this.$http.get('apiGetPaging').then(res=>{
-          this.pagingdata=res.data.data;
-//          console.log(this.pagingdata);
+//         this.$http.get('apiGetPaging').then(res=>{
+//           this.pagingdata=res.data.data;
+// //          console.log(this.pagingdata);
+//         })
+        this.$http.get('api/GetCompanyInfo').then(res=>{
+          // console.log(res.data.station_name
+            this.pagingdata = res.data.around_station
+            // console.log(this.datas)
         })
     },
     beforeDestroy(){
@@ -196,7 +214,18 @@
       },
       showLine1 () {
         this.isShow = !this.isShow
+      },
+      pagingTab1(){
+        // alert(111)
+        if (this.pagingTitle=="移动站列表"&&this.pagingTab=="固定站列表") {
+          this.pagingTitle="固定站列表"
+          this.pagingTab="移动站列表"
+        } else {
+          this.pagingTitle="移动站列表"
+          this.pagingTab="固定站列表"
+        }
       }
     }
+
   }
 </script>

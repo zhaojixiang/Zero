@@ -1,103 +1,125 @@
 <!--频率38.5MHz相关信息-->
 <template>
-  <div class='relationInfo'>
-        <div class='headerTitle'>
-            <span>
-                <img :src="icon_right_arrow" alt="right icon">
-           频率38.5MHz相关信息</span>
-        </div>
-        <section class="unit_info">
-            <el-row :gutter="20">
-                <el-col class="subTitle">
-                    单位信息
-                </el-col>
-            </el-row>
-            <el-row :gutter="20">
-                <el-col :span="12" class="col_flex">
-                    名称：{{ stationInfo.station_name }}
-                </el-col>
-                <el-col :span="12" class="col_flex">
-                    启用日期：
-                    {{stationInfo.launch_date}}
-                </el-col>
-            </el-row>
-            <el-row :gutter="20">
-                <el-col :span="12" class="col_flex">
-                    发射功率：
-                    {{stationInfo.out_power}}
-                </el-col>
-                <el-col :span="12" class="col_flex">
-                    台站性质：
-                    {{stationInfo.station_nature}}
-                </el-col>
-            </el-row>
-            <el-row :gutter="20">
-                <el-col :span="12" class="col_flex">
-                    覆盖率：
-                    {{stationInfo.cover_rate}}
-                </el-col>
-            </el-row>
-        </section>
-        <div class='cover_default'>
-            <el-row :gutter="20">
-                <el-col class="subTitle">
-                    附近固定站
-                </el-col>
-            </el-row>
-            <el-row :gutter="0" style="overflow:auto; height: 50px;">
-                <el-col :span="8" class="col_flex" v-for="(item,index) in stationInfo.around_station" :key="index">
-                    <a href="javascript:;" class="clickable_col">{{ item.name }}</a>
-                </el-col>
-            </el-row>
-        </div>
-    </div>
+<div class='relationInfo'>
+  <h3 class='headerTitle'>
+            频率38.5MHz相关信息
+            <i class="fa fa-times" aria-hidden="true" @click="close"></i>
+        </h3>
+  <section class="unit_info">
+    <el-row :gutter="20">
+      <el-col class="subTitle">
+        单位信息
+      </el-col>
+    </el-row>
+    <el-row :gutter="20">
+      <el-col :span="12" class="col_flex">
+        名称：{{ freqInfo.name }}
+      </el-col>
+      <el-col :span="12" class="col_flex">
+        启用日期： {{freqInfo.date}}
+      </el-col>
+    </el-row>
+    <el-row :gutter="20">
+      <el-col :span="12" class="col_flex">
+        发射功率： {{freqInfo.power}}
+      </el-col>
+      <el-col :span="12" class="col_flex">
+        台站类别： {{freqInfo.type}}
+      </el-col>
+    </el-row>
+    <el-row :gutter="20">
+      <el-col :span="12" class="col_flex">
+        技术体制: {{freqInfo.technology}}
+      </el-col>
+      <el-col :span="12" class="col_flex">
+        覆盖率： {{freqInfo.cover}}
+      </el-col>
+    </el-row>
+  </section>
+  <div class='cover_default'>
+    <el-row :gutter="20">
+      <el-col class="subTitle">
+        附近固定站
+      </el-col>
+    </el-row>
+    <el-row :gutter="0" style="marginLeft: 4px">
+      <el-col :span="8" class="col_flex" v-for="(item,index) in stationInfo" :key="index">
+        <a href="javascript:;" @click="showChannelUse(item)" class="clickable_col">{{ item }}</a>
+      </el-col>
+    </el-row>
+  </div>
+</div>
 </template>
 <script>
-import * as Global_ from 'assets/js/global'
-
 export default {
-  props:{
-      stationInfo:{
-          type:Object
-      }
+  props: {
+    stationInfo: {
+      type: Array
+    },
+    freqInfo: {
+      type: Object
+    }
   },
-  data() {
-      return {
-          icon_right_arrow:Global_.right_arrow
-      }
+  computed: {
+    icon_right_arrow() {
+      return this.$const.right_arrow
+    }
+  },
+  methods: {
+    close() {
+      this.$emit("closeRelaTionInfo")
+    },
+    showChannelUse(param) {
+      // alert(111)
+      console.log(param, '9999');
+      this.$emit("showChannelUse")
+    }
   }
 }
 </script>
-<style>
-  .relationInfo .headerTitle {
-        color: #4fdaff;
+<style lang="less">
+.relationInfo {
+    width: 400px;
+    height: 230px;
+    border: 1px solid #4fdaff;
+    box-shadow: 4px 4px 20px #888888;
+    background: #fff;
+    position: relative;
+    .headerTitle {
+        color: #fff;
         font-size: 14px;
+        font-weight: normal;
+        text-align: center;
+        margin: 0;
         height: 40px;
         line-height: 40px;
-        margin-left: 10px;
+        background: #5195d1;
+        i {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
     }
-    .relationInfo {
-        height: 250px;
-        border: 1px solid #4fdaff;
-        background: rgba(0,0,0,0.2);
-    }
-    .relationInfo .unit_info{
+    .unit_info {
         margin-left: 30px;
     }
-    .relationInfo .cover_default {
+    .cover_default {
         margin-left: 30px;
         margin-top: 10px;
     }
-    .relationInfo .col_flex{
+    .col_flex {
         padding: 10px 10px 0 0;
-        color: #fff;
+        color: #686868;
     }
-    .relationInfo .subTitle{
-        color:#4fdaff;
-        font-size: 15px;
+    .subTitle {
+        padding-top: 15px;
+        color: #686868;
+        font-size: 12px;
     }
-    .relationInfo .clickable_col{
+    .clickable_col {
         text-decoration: underline;
-        color: #fdff35 !important;
+        color: #686868;
     }
+}
 </style>

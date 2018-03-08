@@ -17,13 +17,20 @@ import Num from '../views/equipmentControl/number/number.vue'
 import Worker from '../views/equipmentControl/worker/worker.vue'
 import WorkAnalyze from '../views/equipmentControl/workAnalyze/workAnalyze1.vue'
 
-import DataReplayIndex from '../views/dataReplay/dataReplay.vue'
-import Details from '../views/dataReplay/details.vue'
-import StationManageIndex from '../views/stationManage/index.vue'
-import StationManageDrag from '../views/stationManage/stationManageDrag.vue'
+import DataReplayIndex from '../views/dataReplay-new/dataReplay.vue'
+import Details from '../views/dataReplay/detailsHichart'
+import DetailsEchart from '../views/dataReplay/detailsEchart.vue'
+import StationManageIndex from '../views/stationManage-new/index.vue'
+import StationManageDrag from '../views/stationManage-new/show.vue'
+import UseSituation from 'views/stationManage-new/useSituation.vue'
+import StationManageMultiShow from 'views/stationManage-new/multiShow.vue'
 import StationShowIndex from 'views/stationShow/stationShow.vue'
-import AnalyseIndex from 'views/analyse/analyse1.vue'
-
+import StationShowIndexNew from 'views/stationShow-new/index.vue'
+import AnalyseIndex from 'views/analyse/analyse.vue'
+import AnalyseIndexNew from 'views/analyse-new/analyse-new.vue'
+import AnalyseNewTask from 'views/analyse-new/newTask.vue'
+import Login from 'views/login/login-new'
+import stationAuxiliary from 'views/stationAuxiliary-new/index'
 // import ActivitiesSupport from 'activitiesSupport/activitiesSupport.vue'
 // import ZonesChoice from 'activitiesSupport/zonesChoice.vue'
 // import SignalGet from 'activitiesSupport/signalGet.vue'
@@ -31,13 +38,13 @@ import AnalyseIndex from 'views/analyse/analyse1.vue'
 // import Support from 'views/activitiesSupport/index'
 
 const AsIndex = resolve => {
-  import('views/activitiesSupport/index').then(module => {
+  import('views/activitiesSupport-new/index').then(module => {
     resolve(module)
   })
 }
 
 const SinglIndex = resolve => {
-  import('views/signalMultidimensionalAnalysis/index').then(module => {
+  import('views/signalMultidimensionalAnalysis-new/index').then(module => {
     resolve(module)
   })
 }
@@ -55,17 +62,26 @@ const StIndex = resolve => {
 }
 
 const SkyIndex = resolve => {
-  import('views/spaceOfSkyAnalysis/index').then(module=>{
+  import('views/spaceOfSkyAnalysis-new/index').then(module=>{
     resolve(module)
   })
 }
 
-const High = resolve => {
-  import('base/highchartLine').then(module=>{
+const TB = resolve => {
+  import('base/testMark').then(module => {
     resolve(module)
   })
 }
-
+const TB1 = resolve => {
+  import('base/testVariableBar').then(module => {
+    resolve(module)
+  })
+}
+const USERMANAGE = resolve => {
+  import('components/userManage/index').then(module => {
+    resolve(module)
+  })
+}
 Vue.use(Router)
 const router = new Router({
   routes: [
@@ -81,11 +97,17 @@ const router = new Router({
         {
           path: '/equipment/index',
           name: 'EquipmentIndex',
+          meta: {
+            title: '设备管理',
+          },
           component: EquipmentIndex
         },
         {
           path: '/equipment/WorkAnalyze',
           name: 'WorkAnalyze',
+          meta: {
+            title: '设备管理',
+          },
           component: WorkAnalyze
         },
         {
@@ -101,6 +123,7 @@ const router = new Router({
                   name: 'Situation1',
                   meta: {
                     active: '1',
+                    title: '设备管理',
                   },
                   component: Situation1,
                 },
@@ -109,6 +132,7 @@ const router = new Router({
                   name: 'Situation2',
                   meta: {
                     active: '1',
+                    title: '设备管理',
                   },
                   component: Situation2,
                 },
@@ -117,6 +141,7 @@ const router = new Router({
                   name: 'Situation3',
                   meta: {
                     active: '1',
+                    title: '设备管理',
                   },
                   component: Situation3,
                 },
@@ -127,6 +152,7 @@ const router = new Router({
               name: 'Gdp',
               meta: {
                 active: '2',
+                title: '设备管理',
               },
               component: Gdp,
             },
@@ -135,6 +161,7 @@ const router = new Router({
               name: 'People',
               meta: {
                 active: '3',
+                title: '设备管理',
               },
               component: People
             },
@@ -143,6 +170,7 @@ const router = new Router({
               name: 'Area',
               meta: {
                 active: '4',
+                title: '设备管理',
               },
               component: Area
             },
@@ -151,6 +179,8 @@ const router = new Router({
               name: 'Num',
               meta: {
                 active: '5',
+                title: '设备管理',
+
               },
               component: Num
             },
@@ -159,6 +189,7 @@ const router = new Router({
               name: 'Worker',
               meta: {
                 active: '6',
+                title: '设备管理',
               },
               component: Worker
             }
@@ -187,13 +218,27 @@ const router = new Router({
         {
           path: '/dataReplay/index',
           name: 'DataReplayIndex',
+          meta: {
+            title: '数据回放'
+          },
           component: DataReplayIndex
         },
         {
           path: '/dataReplay/details',
           name: 'Details',
+          meta: {
+            title: '数据回放'
+          },
           component: Details
-        }
+        },
+        {
+          path: '/dataReplay/detail-echart',
+          name: 'DetailsEchart',
+          meta: {
+            title: '数据回放'
+          },
+          component: DetailsEchart
+        },
       ]
     },
     {
@@ -215,6 +260,22 @@ const router = new Router({
             title: '频率台站管理'
           },
           component: StationManageDrag
+        },
+        {
+          path: '/stationManage/useSituation',
+          name: 'useSituation',
+          meta: {
+            title: '频率台站管理'
+          },
+          component: UseSituation
+        },
+        {
+          path: '/stationManage/multiShow',
+          name: 'multiShow',
+          meta: {
+            title: '频率台站管理'
+          },
+          component: StationManageMultiShow
         }
       ]
     },
@@ -230,6 +291,15 @@ const router = new Router({
             title: '台站显示'
           },
           component: StationShowIndex
+        },
+        {
+          path: '/stationShow/index-new',
+          name: 'StationShowIndexNew',
+          meta: {
+            active: '1',
+            title: '台站显示'
+          },
+          component: StationShowIndexNew
         }
       ]
     },
@@ -248,6 +318,28 @@ const router = new Router({
       ]
     },
     {
+      path: '/analyseIndex',
+      component: App,
+      children: [
+        {
+          path: '/analyse/indexNew',
+          name: 'AnalyseIndexNew',
+          meta: {
+            title: '频谱评估分析(New)'
+          },
+          component: AnalyseIndexNew
+        },
+        {
+          path: '/analyse/newTask',
+          name: 'AnalyseNewTask',
+          meta: {
+            title: '频谱评估分析(New)'
+          },
+          component: AnalyseNewTask
+        }
+      ]
+    },
+    {
       path: '/multidimensional',
       component: App,
 
@@ -255,24 +347,31 @@ const router = new Router({
         {
           path:'/multidimensional/index',
           meta:{
-            title:'信号多维分析'
+            title:'SinglIndex多维分析'
           } ,
           component:SinglIndex
         }
       ]
     },
     {
-      path:'/stationAuxiliary',
-      component:App,
+      path: '/stationAuxiliary',
+      component: App,
 
-      children:[
+      children: [
         {
-          path:'/stationAuxiliary/index',
-          meta:{
-            title:'台站辅助选址'
-          } ,
-          component:SaIndex
-        }
+          path: '/stationAuxiliary/index',
+          meta: {
+            title: '台站辅助选址'
+          },
+          component: SaIndex
+        },
+        {
+          path: '/stationAuxiliary/index-new',
+          meta: {
+            title: '台站辅助选址'
+          },
+          component: stationAuxiliary
+        },
       ]
     },
     {
@@ -290,22 +389,44 @@ const router = new Router({
       ]
     },
     {
-      path:'/skyAnalysis',
-      component:App,
+      path: '/skyAnalysis',
+      component: App,
 
-      children:[
+      children: [
         {
-          path:'/skyAnalysis/index',
-          meta:{
-            title:'频域空域分析'
-          } ,
-          component:SkyIndex
+          path: '/skyAnalysis/index',
+          meta: {
+            title: '频域空域分析'
+          },
+          component: SkyIndex
         }
       ]
     },
     {
-      path:'/highchart',
-      component:High
+      path: '/userManage',
+      component: App,
+      children: [
+        {
+          path: '/userManage/index',
+          meta: {
+            title: '用户管理'
+          },
+          component: USERMANAGE
+        }
+      ]
+    },
+    {
+      path: '/TB',
+      component: TB
+    },
+    {
+      path: '/TB1',
+      component: TB1
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: Login
     }
   ]
 });
@@ -324,7 +445,7 @@ router.beforeEach((to, from, next) => {
 router.afterEach(route => {
       // loadingInstance.close();
       // console.log(router.app.$store.state)
-      console.log(route)
+      // console.log(route)
       Store.commit('SET_HEADER_TITLE',route.meta.title)
 
 });

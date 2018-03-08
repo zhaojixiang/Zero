@@ -4194,8 +4194,7 @@ var Map = Evented.extend({
 		    isHover = type === 'mouseout' || type === 'mouseover',
 		    src = e.target || e.srcElement,
 		    dragging = false;
-
-		while (src) {
+    while (src) {
 			target = this._targets[stamp(src)];
 			if (target && (type === 'click' || type === 'preclick') && !e._simulated && this._draggableMoved(target)) {
 				// Prevent firing click after you just dragged an object.
@@ -4213,6 +4212,7 @@ var Map = Evented.extend({
 		if (!targets.length && !dragging && !isHover && isExternalTarget(src, e)) {
 			targets = [this];
 		}
+
 		return targets;
 	},
 
@@ -4269,7 +4269,7 @@ var Map = Evented.extend({
 		}
 
 		for (var i = 0; i < targets.length; i++) {
-			targets[i].fire(type, data, true);
+      targets[i].fire(type, data, true);
 			if (data.originalEvent._stopped ||
 				(targets[i].options.bubblingMouseEvents === false && indexOf(this._mouseEvents, type) !== -1)) { return; }
 		}
@@ -11703,7 +11703,6 @@ var Canvas = Renderer.extend({
 		// Set a flag so that a viewprereset+moveend+viewreset only updates&redraws once
 		this._postponeUpdatePaths = true;
 	},
-
 	onAdd: function () {
 		Renderer.prototype.onAdd.call(this);
 
@@ -11892,7 +11891,7 @@ var Canvas = Renderer.extend({
 
 	_draw: function () {
 		var layer, bounds = this._redrawBounds;
-		this._ctx.save();
+		// this._ctx.save();
 		if (bounds) {
 			var size = bounds.getSize();
 			this._ctx.beginPath();
@@ -11901,17 +11900,17 @@ var Canvas = Renderer.extend({
 		}
 
 		this._drawing = true;
-
+    console.time('draw');
 		for (var order = this._drawFirst; order; order = order.next) {
 			layer = order.layer;
 			if (!bounds || (layer._pxBounds && layer._pxBounds.intersects(bounds))) {
 				layer._updatePath();
 			}
 		}
-
+    console.timeEnd('draw');
 		this._drawing = false;
 
-		this._ctx.restore();  // Restore state before clipping.
+		// this._ctx.restore();  // Restore state before clipping.
 	},
 
 	_updatePoly: function (layer, closed) {
@@ -11955,7 +11954,7 @@ var Canvas = Renderer.extend({
 		this._drawnLayers[layer._leaflet_id] = layer;
 
 		if (s !== 1) {
-			ctx.save();
+			// ctx.save();
 			ctx.scale(1, s);
 		}
 
@@ -11963,9 +11962,8 @@ var Canvas = Renderer.extend({
 		ctx.arc(p.x, p.y / s, r, 0, Math.PI * 2, false);
 
 		if (s !== 1) {
-			ctx.restore();
+			// ctx.restore();
 		}
-
 		this._fillStroke(ctx, layer);
 	},
 
@@ -11989,7 +11987,8 @@ var Canvas = Renderer.extend({
 			ctx.lineJoin = options.lineJoin;
 			ctx.stroke();
 		}
-	},
+    ctx.closePath();
+  },
 
 	// Canvas obviously doesn't have mouse events for individual drawn objects,
 	// so we emulate that by calculating what's under the mouse on mousemove/click manually

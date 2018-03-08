@@ -6,6 +6,8 @@
             <img :src="icon_right_arrow" alt="right icon">
             自由仿真分析
         </span>
+      <span class="minus" @click="minus"><i class="el-icon-minus i-minus"></i></span>
+
     </div>
     <el-main class='cover_default1'>
         <el-form :inline="true" v-model="formData">
@@ -57,12 +59,9 @@
   </div>
 </template>
 <script>
-import * as Global_ from "assets/js/global";
-
 export default {
   data() {
     return {
-      icon_right_arrow: Global_.right_arrow,
       formData:{
           rate:'',
           power:'',
@@ -74,10 +73,18 @@ export default {
       }
     };
   },
+  computed: {
+    icon_right_arrow() {
+      return this.$const.right_arrow
+    }
+  },
   methods: {
     starts() {
     //   console.log("Do analysis right now!",this.formData);
         this.$emit('starts',this.formData)
+    },
+    minus(){
+      this.$emit('minus');
     }
   }
 };
@@ -87,8 +94,7 @@ export default {
   height: 286px;
   overflow: hidden;
   border: 1px solid #4fdaff;
-    background: rgba(0, 0, 0, 0.2);
-  margin-top: 10px;
+  background: #FEFEFE;
 }
 .freeAnalysis .headerTitle {
   color: #4fdaff;
@@ -96,15 +102,16 @@ export default {
   line-height: 40px;
   padding: 0 10px;
   font-size: 14px;
+  border-bottom: solid 1px #dfe4ed;
+
 }
 .freeAnalysis .cover_default1 {
-  color: #fff;
+  color: #88898A;
   position: relative;
 }
 .freeAnalysis .cover_default1 .lable{
   display: inline-block;
   min-width: 70px;
-  color: #b7dbfd;
 }
 .freeAnalysis .el-main {
   padding: 0;
@@ -120,7 +127,7 @@ export default {
   margin-bottom: 0;
 }
 .freeAnalysis .cover_default1 .el-form-item__label {
-  color: #fff;
+  color: #88898A;
 }
 .freeAnalysis .cover_default1 .el-button--medium {
   width: 100%;
@@ -134,27 +141,27 @@ export default {
   /* bottom: 0; */
 }
 .freeAnalysis .cover_default1 .el-input__inner {
-  background-color: #3c78af;
-  color: #fff;
+  background-color: #EBECED;
+  color: #88898A;
   width: 95px;
-  border-color: #67a3dc;
 }
 .freeAnalysis .el-input{
   width: 95px;
+  background-color: #EBECED;
 }
 .freeAnalysis .cover_default1 .el-form-item__label {
   font-size: 10px;
 }
 
   .freeAnalysis .cover_default1 .el-input-number--mini .el-input-number__decrease,.freeAnalysis .el-input-number--mini .el-input-number__increase{
-      background-color: #3c78af;
+    background-color: #EBECED;
   }
   .freeAnalysis .cover_default1 .el-input-number--mini{
     width: 95px;
   }
   .freeAnalysis .cover_default1 .el-input-number__decrease,.el-input-number__increase{
       border:none;
-      color:#fff;
+      color:#88898A;
   }
   ::-webkit-scrollbar {
   display: none;

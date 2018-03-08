@@ -1,11 +1,11 @@
 <!-- 频域空域 -->
 <template>
-    <section>
+    <section class="sky">
         <!-- 头部导航 -->
         <nav1></nav1>
-        <section>
+        <section class="content">
             <el-row :gutter="20">
-                <el-col :span="8">
+                <el-col :span="8" class="left">
                   <!-- 相关分析 -->
                     <relation @do_analysis='do_analysis'></relation>
                     <!-- 频率占用度 -->
@@ -17,7 +17,7 @@
                 <el-col :span="16">
                     <section style="position:relative;">
                         <!-- 地图控件 -->
-                        <leaflet style='height:755px;margin-top:.5em;'></leaflet>
+                        <leaflet style='height:755px;'></leaflet>
                         <vue-draggable-resizable :resizable="false" :z="999" :x='10' :y='440'>
                             <!-- 合法 违规及异常信号统计 -->
                             <err-sum :spectraBarOption='spectraBarOption'></err-sum>
@@ -139,5 +139,14 @@ export default {
 }
 </script>
 <style scoped>
-
+.sky .content{
+  width: 98%;
+  margin: 10px auto;
+}
+.sky .left{
+  height: 755px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 </style>

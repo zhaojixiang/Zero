@@ -620,7 +620,7 @@ Mock.mock(/api\/GetChannelUsed/, {
 Mock.mock(/api\/GetRateList/, {
   success: true,
   msg: '',
-  'data|30': [
+  'data|5': [
     { "rate": 38.5, "bandWidth|100-200": 200, "signalCover|0-100.0-2": 0, "rateNature": "合法" }
   ]
 });
@@ -646,7 +646,7 @@ Mock.mock(/api\/GetTab/, {
   msg: '',
   data: {
     'data|20': [
-      { 'value|1-100': 1, 'color': '@COLOR' }
+      { 'value|1-100': 1, 'color': '@COLOR','checked':false }
     ],
     title: ['88MHz', '90MHz', '92MHz', '94MHz', '96MHz', '98MHz', '100MHz', '102MHz', '104MHz', '106MHz']
   }
@@ -747,7 +747,7 @@ Mock.mock(/api\/GetAllStationInfoList/, {
   success: true,
   msg: '',
   data: {
-    'data|8': [{ 'station_name': '高新区天府站', 'operator': '移动', 'tech_sys': '4G', 'standard': 'GSM', 'launch_date': '@date', 'rate_range': '400-600MHz' }]
+    'data|8': [{ 'longtitude|100-130.0-5': 120, 'latitude|20-40.0-5': 20, 'frequency|80-108.0-2': 88, 'parameter': 'EARFCN=0;Freq=1457MHz;MNC=0;TMD=112MKz;'}]
   }
 })
 // 网格占用度

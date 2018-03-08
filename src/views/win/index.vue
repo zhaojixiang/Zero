@@ -3,40 +3,10 @@
       <div class="desktop">
           <div id="win10-shortcuts" class="shortcuts-hidden">
               <div class="shortcut"
-                   onclick="Win10.openUrl('/#/equipment/index',
-                   '<img class=\'icon\' src=\'static/win/img/icon/icon1.png\'/>设备管理')">
-                  <img class="icon" src="static/win/img/icon/icon1.png"/>
-                  <div class="title" >设备管理</div>
-              </div>
-              <div class="shortcut"
-                   onclick="Win10.openUrl('/#/stationManage/index',
-                   '<img class=\'icon\' src=\'static/win/img/icon/icon3.png\'/>频率台站管理')">
-                  <img class="icon" src="static/win/img/icon/icon3.png"/>
-                  <div class="title">频率台站管理</div>
-              </div>
-              <div class="shortcut"
                    onclick="Win10.openUrl('/#/dataReplay/index',
                    '<img class=\'icon\' src=\'static/win/img/icon/icon6.png\'/>数据回放')">
                   <img class="icon" src="static/win/img/icon/icon6.png"/>
                   <div class="title">数据回放</div>
-              </div>
-              <div class="shortcut"
-                   onclick="Win10.openUrl('/#/stationShow/index',
-                   '<img class=\'icon\' src=\'static/win/img/icon/icon8.png\'/>台站显示')">
-                  <img class="icon" src="static/win/img/icon/icon8.png"/>
-                  <div class="title">台站显示</div>
-              </div>
-              <div class="shortcut"
-                   onclick="Win10.openUrl('/#/activities/index',
-                   '<img class=\'icon\' src=\'static/win/img/icon/icon10.png\'/>重大活动保障')">
-                  <img class="icon" src="static/win/img/icon/icon10.png"/>
-                  <div class="title">重大活动保障</div>
-              </div>
-              <div class="shortcut"
-                   onclick="Win10.openUrl('/#/multidimensional/index',
-                   '<img class=\'icon\' src=\'static/win/img/icon/icon9.png\'/>信号多维分析')">
-                  <img class="icon" src="static/win/img/icon/icon9.png"/>
-                  <div class="title">信号多维分析</div>
               </div>
               <div class="shortcut"
                    onclick="Win10.openUrl('/#/stationAnalysis/index',
@@ -44,29 +14,12 @@
                   <img class="icon" src="static/win/img/icon/icon2.png"/>
                   <div class="title">频谱评估基站分析</div>
               </div>
-
-              <div class="shortcut"
-                   onclick="Win10.openUrl('/#/analyse/index',
-                   '<img class=\'icon\' src=\'static/win/img/icon/icon4.png\'/>频谱评估分析')">
-                  <img class="icon" src="static/win/img/icon/icon4.png"/>
-                  <div class="title">频谱评估分析</div>
+                <div class="shortcut"
+                   onclick="Win10.openUrl('/#/userManage/index',
+                   '<img class=\'icon\' src=\'static/win/img/icon/icon2.png\'/>用户管理')">
+                  <img class="icon" src="static/win/img/icon/icon2.png"/>
+                  <div class="title">用户管理</div>
               </div>
-              <div class="shortcut"
-                   onclick="Win10.openUrl('/#/skyAnalysis/index',
-                   '<img class=\'icon\' src=\'static/win/img/icon/icon5.png\'/>频域空域分析')">
-                  <img class="icon" src="static/win/img/icon/icon5.png"/>
-                  <div class="title">频域空域分析</div>
-              </div>
-
-              <div class="shortcut"
-                   onclick="Win10.openUrl('/#/stationAuxiliary/index',
-                   '<img class=\'icon\' src=\'static/win/img/icon/icon7.png\'/>台站辅助选址')">
-                  <img class="icon" src="static/win/img/icon/icon7.png"/>
-                  <div class="title">台站辅助选址</div>
-              </div>
-
-
-
           </div>
           <div id="win10-desktop-scene"></div>
       </div>

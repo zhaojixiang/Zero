@@ -1,0 +1,36 @@
+{
+  "Freqs": {
+    "Freq": [
+      {
+        "-start": "10000000",
+        "-step": "25000",
+        "-stop": "20000000",
+        "-threshold": "106",
+        "-block": "10",
+        "-company": "广电",
+        "-system": "FM",
+        "-remark": "10MHz-20MHz 电视频道7"
+      },
+      {
+        "-start": "1",
+        "-step": "3",
+        "-stop": "2",
+        "-threshold": "4",
+        "-block": "5",
+        "-company": "6",
+        "-system": "7",
+        "-remark": "8"
+      },
+      {
+        "-start": "2",
+        "-step": "4",
+        "-stop": "3",
+        "-threshold": "5",
+        "-block": "6",
+        "-company": "7",
+        "-system": "8",
+        "-remark": "9"
+      }
+    ]
+  }
+}

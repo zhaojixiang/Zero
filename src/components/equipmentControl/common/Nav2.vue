@@ -43,13 +43,6 @@
 
 <script>
   export default {
-    props: [
-
-    ],
-    data () {
-      return {
-      }
-    },
     computed:{
       subMenuShow:function(){
         return this.$store.state.equipment.subMenuShow;

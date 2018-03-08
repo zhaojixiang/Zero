@@ -9,6 +9,9 @@
       <!-- 筛选表单 -->
       <VueDraggableResizable :resizable="true" :x="20" :y="50" :z="999" :parent="true">
         <filtrate class="flitrate"/>
+        <div  class="animated bounce infinite" >
+        动画
+    </div>
       </VueDraggableResizable>
       <!-- 信号使用情况饼图 -->
       <VueDraggableResizable :resizable="false" :x="20" :y="180" :z="999" :parent="true">
@@ -55,13 +58,14 @@
     width: 100%;
     height: 100%;
     margin: auto;
+    /*min-height: 1200px;*/
     /* margin-top: 20px; */
-    position: relative;
+    /*position: relative;*/
   }
 
   #stationMange {
     color: #ffffff;
-    height: 1200px;
+    /* height: 1200px; */
   }
 
   #stationMange .left {
@@ -179,7 +183,7 @@
     mixins: [menuShowMixin],
     mounted() {
 //信号使用情况比例
-      this.ratioPieOption = GetRatioPieOption();
+      this.ratioPieOption = GetRatioPieOption([1,3,2],["q","b","v"]);
       this.occupyBarOption = GetOccupyBarOption();
       this.spectraBarOption = GetSpectraBarOption();
 

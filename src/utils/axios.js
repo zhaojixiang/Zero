@@ -10,6 +10,8 @@ LoadingBar.config({
     height: 4
 });
 axios.interceptors.request.use(config => {
+  // 鉴权字段
+  config.headers.Authorization = sessionStorage.getItem('sessionKey')===null?"":sessionStorage.getItem('sessionKey');
   LoadingBar.start();
   return config
 }, error => {
@@ -44,7 +46,10 @@ function checkStatus(response) {
         err.msg = '未授权，请重新登录'
         break;
       case 403:
-        err.msg = '拒绝访问'
+        err.msg = response.data.Msg?`错误：${response.data.Msg}`:'拒绝访问';
+        setTimeout(() => {
+          window.location.replace("/#/login");
+        },3000);
         break;
       case 404:
         err.msg = '请求错误,未找到该资源'
@@ -89,13 +94,19 @@ function checkCode(res) {
     Message({
       message:res.msg,
       type:'error',
-    })
+    });
+    LoadingBar.finish();
+    // return Promise.reject(res);
+    return res;
   }
-  if (res.data && (!res.success)) {
+  if (!res.success) {
     Message({
       message:res.msg,
       type:'error',
-    })   
+    });
+    LoadingBar.finish();
+    // return Promise.reject(res);
+    return res;
   }
   setTimeout(()=>{
     LoadingBar.finish();
@@ -108,11 +119,11 @@ export default {
     return axios({
       method: 'post',
       url,
-      data: qs.stringify(data),
-      timeout: 10000,
+      data: data,
+      timeout: 500000, // 防止请求被 canceled
       headers: {
         'X-Requested-With': 'XMLHttpRequest',
-        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+        'Content-Type': 'application/json; charset=UTF-8'
       }
     }).then(
       (response) => {
@@ -129,7 +140,7 @@ export default {
       method: 'get',
       url,
       params, // get 请求时带的参数
-      timeout: 10000,
+      timeout: 500000,
       headers: {
         'X-Requested-With': 'XMLHttpRequest'
       }

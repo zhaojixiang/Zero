@@ -342,6 +342,8 @@ export default {
             series_data,
             series_color: colorList,
             xAxis_data,
+            title_color:'#fff',
+            font_color:'#fff',
           });
         });
     },
