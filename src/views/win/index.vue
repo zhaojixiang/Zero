@@ -14,6 +14,12 @@
                   <img class="icon" src="static/win/img/icon/icon2.png"/>
                   <div class="title">频谱评估基站分析</div>
               </div>
+              <div class="shortcut"
+                   onclick="Win10.openUrl('/#/analyse/indexNew',
+                   '<img class=\'icon\' src=\'static/win/img/icon/icon4.png\'/>频谱评估分析')">
+                  <img class="icon" src="static/win/img/icon/icon4.png"/>
+                  <div class="title">频谱评估分析</div>
+              </div>
                 <div class="shortcut"
                    onclick="Win10.openUrl('/#/userManage/index',
                    '<img class=\'icon\' src=\'static/win/img/icon/icon2.png\'/>用户管理')">

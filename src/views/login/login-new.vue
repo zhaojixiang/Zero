@@ -63,7 +63,7 @@ export default {
           sessionStorage.setItem('sessionKey',data.sessionKey);
 					this.$message.success('登录成功！跳转中');
 					setTimeout(()=>{
-						this.$router.replace('/userManage/index');
+						this.$router.replace('/');
 					},1000)
 				} else {
 					this.$message.warning(msg);
