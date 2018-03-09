@@ -1,9 +1,7 @@
 <template>
 <div
   v-loading="loading"
-  element-loading-text="数据加载中"
-  element-loading-spinner="el-icon-loading"
-  element-loading-background="rgba(0, 0, 0, 0.8)"
+  element-loading-text="数据加载中..."
   id="dataReplay">
   <nav1 :showTitle="true" :dataReplayTop="true" @occupy="occupy1" />
   <div class="container">
@@ -62,11 +60,11 @@
 
 #dataReplay .minus {
   position: absolute;
-  right: 10px;
+  right: 13px;
   cursor: pointer;
   color: #2774A5;
   font-size: 16px;
-  top: 13px;
+  top: 9px;
   z-index: 3000;
 }
 
@@ -278,7 +276,22 @@ export default {
   methods: {
     _getBusiness() {
     	this.$api.dataReply.getBusiness().then(res => {
-    		this.business = res.data.businesInfos;
+        let {success, data, msg} = res
+        if(success){
+          if (data) {
+            this.business = data.businesInfos;
+          }else{
+            this.$message({
+              type: 'warning',
+              message: '没有查询到业务频段'
+            })
+          }
+        }else{
+          this.$message({
+            type: 'warning',
+            message: msg
+          })
+        }
     	})
     },
     _emptyMap(){
@@ -291,7 +304,16 @@ export default {
         this.loading = true;
         this.$api.dataReply.getTrace(this.formData).then(res=>{
           this.loading = false;
-          this.$refs.map.energyCircle(res.data.position_Powers,res.data.maxPower,res.data.minPower, show);
+          let {success, data, msg} = res
+          if (success) {
+            if (data) {
+              this.$refs.map.energyCircle(res.data.position_Powers,res.data.maxPower,res.data.minPower, show);
+            }else{
+              this.$message.warning("暂无数据！")
+            }
+          } else {
+            this.$message.warning(msg)
+          }
         })
       } else {
         this.$refs.map.energyCircle([],0,0,show);
@@ -307,7 +329,16 @@ export default {
       //单个移动站能量轨迹，接口暂未实现
       this.$api.dataReply.getTrace(param).then(res=>{
         this.loading = false;
-        this.$refs.map.energyCircle(res.data.position_Powers,res.data.maxPower,res.data.minPower, true,sta.name);
+        let {success, data, msg} = res
+        if (success) {
+          if (data) {
+            this.$refs.map.energyCircle(res.data.position_Powers,res.data.maxPower,res.data.minPower, true,sta.name);
+          }else{
+            this.$message.warning("暂无数据！")
+          }
+        } else {
+            this.$message.warning(msg)
+        }
       })
     },
     mobileEnergyMarker:function(latlng,show=true){
@@ -358,20 +389,36 @@ export default {
     },
     _getStationInfo(param){
       return this.$api.dataReply.getStationInfo(param).then(res=>{
-        let fixStations = [];
-        let moveStations = [];
-        //筛选固定站和移动站
-        for (let i=0;i<res.data.length;i++){
-            let temp = res.data[i];
-            if(temp.type == 1) {
-              temp.checked = false;
-              fixStations.push(temp)
-            } else {
-              moveStations.push(temp)
+        let {success, data, msg} = res
+        if (success) {
+          if(data){
+            let fixStations = [];
+            let moveStations = [];
+            //筛选固定站和移动站
+            for (let i=0;i<data.length;i++){
+                let temp = data[i];
+                if(temp.type == 1) {
+                  temp.checked = false;
+                  fixStations.push(temp)
+                } else {
+                  moveStations.push(temp)
+                }
             }
+            this.pagingData = moveStations;
+            this.initMarker(fixStations);
+          }else{
+            this.$message({
+              type: 'warning',
+              message: '没有查询到数据'
+            })
+          }
+        } else {
+          this.$message({
+            type: 'warning',
+            message: msg
+          })
         }
-        this.pagingData = moveStations;
-        this.initMarker(fixStations);
+
       });
     },
     reply(da) {
@@ -405,13 +452,18 @@ export default {
       param.lat = point.lat;
       param.lon = point.lng;
       this.$api.dataReply.getTraceSpectrum(param).then(res=>{
-        this.line_data = res.data;
-        if(res.data) {
-          this.line_show = true;
+        let {success, data, msg} = res
+        if (success) {
+          this.line_data = data;
+          if(data) {
+            this.line_show = true;
+          } else {
+            this.$message.warning("该点暂无数据!");
+          }
+          this.loading = false;
         } else {
-          this.$message.warning("该点暂无数据!");
+          this.$message.warning(msg);
         }
-        this.loading = false;
       });
     },
 

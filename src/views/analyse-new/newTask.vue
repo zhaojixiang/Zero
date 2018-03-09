@@ -30,7 +30,7 @@
               <td>
                 <el-checkbox :label="item.name">{{item.name}}</el-checkbox>
               </td>
-              <td style="text-align:right;cursor:pointer" @click="details(item.name,item.data)">{{item.task}}</td>
+              <td :style="{textAlign:'right',cursor:'pointer',color:item.task=='暂无'||item.task=='业务频段0个'?'#686868':'#0693ec'}" @click="details(item.name,item.data)">{{item.task=='业务频段0个'?'暂无':item.task}}</td>
             </tr>
           </table>
         </el-checkbox-group>
@@ -44,7 +44,7 @@
         <el-collapse v-model="activeNames" @change="handleChange" style="margin-bottom: 60px">
           <!-- 广播电视 -->
           <el-collapse-item name="1">
-            <span style="display:inline-block;marginLeft:20px;" slot="title"><el-checkbox v-model="checkBroadCast" @change="checkBroadCastChange">广播电视</el-checkbox></span>
+            <span style="display:inline-block;marginLeft:20px;" slot="title"><el-checkbox v-model="checkBroadCast" @change="checkBroadCastChange" style="color:##0f95e7">广播电视</el-checkbox></span>
             <el-collapse v-model="activeNames" @change="handleChange">
               <!-- 边境地区 -->
               <el-collapse-item name="3">
@@ -72,7 +72,7 @@
           </el-collapse-item>
           <!-- 基站 -->
           <el-collapse-item name="2">
-            <span style="display:inline-block;marginLeft:20px;" slot="title"><el-checkbox v-model="checkAllStation" @change="checkAllStationChange">基站</el-checkbox></span>
+            <span style="display:inline-block;marginLeft:20px;" slot="title"><el-checkbox v-model="checkAllStation" @change="checkAllStationChange" style="color:#0f95e7">基站</el-checkbox></span>
             <el-row style="marginLeft:44px;">
               <el-checkbox-group v-model="checkStation">
                 <el-col v-for="(item,index) in station" :key="index" :span="8">

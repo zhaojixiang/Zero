@@ -125,7 +125,7 @@
 
   .paging .toptext {
     margin-left: 14px;
-    background: url("../../assets/image/doubleArrows.png") no-repeat;
+    background: url("../../assets/image/right-arrow.png") no-repeat;
     background-position: left;
     text-indent: 23px;
     color: #2873a7;

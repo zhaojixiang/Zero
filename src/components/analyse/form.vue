@@ -83,14 +83,14 @@
 			</el-row>
 		</el-form>
 		<!-- 频段 -->
-		<el-form :rules="data_replay_rules" class=" frequencyBand " :inline="true" :model="dataReply" v-if="name==='频段'">
+		<el-form :rules="data_replay_rules" class="frequencyBand" :inline="true" :model="dataReply" v-if="name==='频段'">
 			<!-- <section class="radioForm"> -->
 			<el-row>
 					<el-radio-group @change="change" v-model="dataReply.radio">
-						<el-radio label="1" :style="{color:'#fff',textColor:'#fff',display:'block',paddingLeft:'0px',marginLeft:'20px'}">业务频率
+						<el-radio label="1" :style="{color:'#fff',textColor:'#fff',display:'block',paddingLeft:'0px',marginLeft:'20px'}">业务频段
 							<el-form-item prop="business_freq">
 							<!-- 业务频率 -->
-							<el-select style="margin-left:31px" :disabled="disabled" class="select" v-model="dataReply.business_freq" placeholder="请选择">
+							<el-select style="margin-left:38px" :disabled="disabled" class="select" v-model="dataReply.business_freq" placeholder="请选择">
 								<el-option v-for="(item,index) in business" :key="index" :label="item.remark" :value="index">
 								</el-option>
 							</el-select>
@@ -152,7 +152,7 @@
 					<el-input size="mini" v-model="dataReply.signal">
 					</el-input>
 				</el-form-item>
-				<el-form-item style="marginLeft:40px">
+				<el-form-item style="">
 					<el-radio-group v-model="dataReply.checked" style="color:#fff;">
 						<el-radio :label="true">自动门限</el-radio>
 						<el-radio :label="false">直线门限</el-radio>
@@ -339,11 +339,15 @@ export default {
 			}
 			else if(this.name == "频段") {
 				if (this.dataReply.radio == "1") {
-					this.dataReply.start_freq = this.business[this.dataReply.business_freq].startFreq;
-					this.dataReply.stop_freq = this.business[this.dataReply.business_freq].stopFreq;
-					this.dataReply.step = this.business[this.dataReply.business_freq].step;
+					if (this.dataReply.business_freq) {
+						this.dataReply.start_freq = this.business[this.dataReply.business_freq].startFreq;
+						this.dataReply.stop_freq = this.business[this.dataReply.business_freq].stopFreq;
+						this.dataReply.step = this.business[this.dataReply.business_freq].step;
+						this.$emit("submit", this.dataReply);
+					} else {
+						this.$message.warning("还没有填完哦~")
+					}
 				}
-				this.$emit("submit", this.dataReply);
          	}
 			else if(this.name == "单频") {
 				this.$refs['single'].validate((valid) => {
@@ -353,6 +357,7 @@ export default {
 						this.dataReply.step = this.dataReply.band_width;
 						this.$emit("submit", this.dataReply);
 					} else {
+						this.$message.warning("还没有填完哦~")
 						return false;
 					}
 				});
@@ -420,6 +425,9 @@ export default {
 	// 		margin-right: 0px;
 	// 	}
 	// }
+	.el-input{
+		font-size: 12px;
+	}
 
 }
 .el-range-editor--mini {

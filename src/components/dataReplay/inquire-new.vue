@@ -62,17 +62,20 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .out_wrap {
   width: inherit;
   color: #686868;
 }
+.out_wrap .el-tabs__item.is-disabled{
+  color: #1e74a8;
+}
 .out_wrap .tabBack{
     /* background-color: #fff; */
 }
-.out_wrap .el-form-item__label {
-  color:#bcddf7;
-}
+/* .out_wrap .el-form-item__label { */
+  /* color:#bcddf7; */
+/* } */
 .el-radio__label{
   color: #686868;
 }
@@ -104,6 +107,9 @@ export default {
   width: 50%;
   display: block;
   margin: 0 auto;
+}
+.out_wrap .el-tabs--card>.el-tabs__header .el-tabs__nav{
+  border-radius: 0;
 }
 ::-webkit-scrollbar {
   display: none;
