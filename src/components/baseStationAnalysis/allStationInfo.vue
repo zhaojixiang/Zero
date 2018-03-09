@@ -51,10 +51,22 @@ export default {
             activeTabs:'FIRST',
             value:'',
             operatorList:['移动','联通','电信'],
-            operators:['移动','联通','电信'],
-            fuck:'you',
-            standardList:['2G','3G','4G'],
-            standards:['2G','3G','4G'],
+            standardList:['2G','3G','4G'],            
+            // 运营商和制式
+            list:{
+                operators:{
+                    FIRST:['移动','联通','电信'],
+                    SECOND:['移动','联通','电信'],
+                    THIRD:['移动','联通','电信'],
+                    FOURTH:['移动','联通','电信']
+                },
+                standards:{
+                    FIRST:['2G','3G','4G'],
+                    SECOND:['2G','3G','4G'],
+                    THIRD:['2G','3G','4G'],
+                    FOURTH:['2G','3G','4G']
+                }
+            },
             exceptionTypes:[
                 {
                     label: 'GSM-R频段内有运营商基站',
@@ -93,8 +105,8 @@ export default {
     },
     methods:{
       handleClick(param){
-        this.operatorList = this.operators;
-        this.standardList = this.standards;
+        this.standardList = this.list.standards[param.name];
+        this.operatorList = this.list.operators[param.name];
         this.activeTabs = param.name;
         this.$emit('tabChange',param.label);
       },
@@ -103,11 +115,13 @@ export default {
       },
       // 信号制式切换
       standardChange(val) {
-          this.$emit('standardChange',val.join(''));
+        this.list.standards[this.activeTabs] = [...val];               
+        this.$emit('standardChange',val.join(''));
       },
     //   切换运营商
       operatorChange(val) {
-          this.$emit('operatorChange',val.join(''));
+        this.list.operators[this.activeTabs] = [...val];        
+        this.$emit('operatorChange',val.join(''));
       },
       // 当前选中页面改变
       stationPageChange(val) {
