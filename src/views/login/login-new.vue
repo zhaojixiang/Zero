@@ -61,6 +61,7 @@ export default {
 				if (success) {
 					if (this.rememberMe) sessionStorage.setItem('userInfo',JSON.stringify(data.logonUser));
           sessionStorage.setItem('sessionKey',data.sessionKey);
+          sessionStorage.setItem('freshFlag',false);          
 					this.$message.success('登录成功！跳转中');
 					setTimeout(()=>{
 						this.$router.replace('/');

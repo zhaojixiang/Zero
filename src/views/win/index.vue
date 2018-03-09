@@ -20,10 +20,10 @@
                   <img class="icon" src="static/win/img/icon/icon4.png"/>
                   <div class="title">频谱评估分析</div>
               </div>
-                <div class="shortcut"
+                <div class="shortcut" v-if='checkRole===0'
                    onclick="Win10.openUrl('/#/userManage/index',
-                   '<img class=\'icon\' src=\'static/win/img/icon/icon2.png\'/>用户管理')">
-                  <img class="icon" src="static/win/img/icon/icon2.png"/>
+                   '<img class=\'icon\' src=\'static/win/img/icon/icon11.png\'/>用户管理')">
+                  <img class="icon" src="static/win/img/icon/icon11.png"/>
                   <div class="title">用户管理</div>
               </div>
           </div>
@@ -74,9 +74,22 @@
 
 <script>
 export default {
+  data() {
+      return {
+          checkRole:sessionStorage.getItem('userInfo')===null?'':Number(JSON.parse(sessionStorage.getItem('userInfo')).permission)
+      }
+  },
   mounted() {
+    var  flag = window.sessionStorage.getItem("freshFlag");
+    console.log(flag);
+    if(!flag){
+       settimeout(function() {
+           window.location.reload();
+       },1000); 
+       window.localStorage.setItem("flag",true);
+    }
+    console.log('mounted')
     Win10.onReady(function () {
-
         //设置壁纸
         Win10.setBgUrl({
             main: '/static/win/img/wallpapers/win-bg.png',

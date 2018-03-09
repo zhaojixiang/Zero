@@ -17,6 +17,7 @@
         </section>
         <section class="footer">
             <el-pagination
+                v-if="allStationInfo.stationTotalCount"
                 layout="prev, pager, next"
                 :total="allStationInfo.stationTotalCount"
                 @current-change='stationPageChange'>

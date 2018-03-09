@@ -87,7 +87,7 @@ let init = (initData)=>{
 };
 init(initData);
 
-require('./assets/js/mock');
+// require('./assets/js/mock');
 let vm = new Vue({
   router,
   store,
